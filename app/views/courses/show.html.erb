@@ -1,0 +1,26 @@
+<h1>Страница курса</h1>
+<%= @course.title %><br>
+<%= @course.part_fr %><br>
+<%= @course.part_sc %><br>
+<%= @course.main %><br>
+<%if UsersAndCourse.find_by(user_id: current_user.id, course_id: @course.id) == nil%>
+<div class="row">
+    <div class='col-auto'>
+        <%= form_with url: "/courses/sign/#{@course[:id]}", method: :post do |form| %>
+        <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Записаться на курс
+        </button>
+        <% end %> 
+    </div>
+</div>
+<% else %>
+<div class="row">
+    <div class='col-auto'>
+        <%= form_with url: "/courses/unsubscribe/#{@course[:id]}", method: :post do |form| %>
+        <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Отписаться от курса
+        </button>
+        <% end %> 
+    </div>
+</div>
+<% end %>

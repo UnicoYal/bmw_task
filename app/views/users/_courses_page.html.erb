@@ -1,0 +1,19 @@
+<%if @param == '0'%>
+<h1>Текущие курсы</h1>
+<% k = 1%>
+<% @my_courses.where(status: false).each do |us_course|%>
+<% course = Course.find_by(id: us_course.course_id)%>
+  <%=k%>: <%= course.title %><br>
+    <%=link_to "Перейти в курс", "/courses/show/#{course.id}", class: "nav-link px-2", type: "button"%>
+    <% k+= 1%>
+<%end%>
+<%else%>
+<h1> Пройденные курсы </h1>
+<% k = 1%>
+<% @my_courses.where(status: true).each do |us_course|%>
+<% course = Course.find_by(id: us_course.course_id)%>
+  <%=k%>: <%= course.title %><br>
+    <%=link_to "Перейти в курс", "/courses/show/#{course.id}", class: "nav-link px-2", type: "button"%>
+    <% k+= 1%>
+<%end%>
+<%end%>

@@ -1,0 +1,9 @@
+<h1>ПРОФИЛЬ</h1>
+<%= current_user.first_name%> <%= current_user.second_name%>
+ <ul class="nav col-12 col-lg-auto me-lg-auto mb-3 mb-md-0">
+            <%= button_to "Текущие курсы", my_courses_path(param: 0), class: "btn btn-outline-light me-2 text-bg-dark" %></button>
+            <%= button_to "Пройденные курсы", my_courses_path(param: 1), class: "btn btn-outline-light me-2 text-bg-dark" %></button>
+        </ul>
+<div id='courses'></div>
+
+<%=link_to "Редактировать профиль",  edit_user_path(current_user), class: "nav-link px-2", type: "button"%>

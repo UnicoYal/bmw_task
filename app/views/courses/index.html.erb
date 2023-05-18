@@ -1,0 +1,16 @@
+<h1>Courses#index</h1>
+<p>Find me in app/views/courses/index.html.erb</p>
+<% @courses.each do |course| %>
+<%= course.title %>
+<div class="container">
+              <div class="row">
+                  <div class='col-auto'>
+                      <%= form_with url: "/courses/show/#{course[:id]}", method: :get do |form| %>
+                      <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                      Просмотреть курс
+                      </button>
+                      <% end %> 
+                  </div>
+              </div>
+          </div>
+<% end %>
