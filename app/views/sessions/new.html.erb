@@ -1,4 +1,8 @@
-<h1>Войти в аккаунт</h1>
+<%if $param == '1' %>
+<h1>Войти в аккаунт наставника</h1>
+<%else%>
+<h1>Войти в аккаунт сотрудника</h1>
+<%end%>
 
 <%= form_with url: session_path do |form| %>
   <p><%= form.label :email, "Введите email" %></p>

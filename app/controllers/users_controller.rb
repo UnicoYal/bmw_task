@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     return unless @user.save
     session[:user_id] = @user.id
+    Rating.create(user_id: @user.id, all_courses: 0, finished_courses: 0)
     # UserMailer.with(user: @user).welcome_email.deliver_now
     # flash[:success] = 'На почту выслано письмо, подтвердите, пожалуйста'
     redirect_to home_path

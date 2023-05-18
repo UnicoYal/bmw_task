@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   has_secure_password validations: false
   has_and_belongs_to_many :courses
+  has_one :rating
   # has_many :service_records
   # has_many :consultations
   # has_one :work

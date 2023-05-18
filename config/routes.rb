@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'ratings/index', as: "rate"
   resource :session, only: %i[new create destroy]
   get 'users/index'
   get 'users/new', as: "new_user"
@@ -12,6 +13,9 @@ Rails.application.routes.draw do
   get 'courses/show/:id', to: "courses#show", as: "show_cu"
   post 'courses/sign/:id', to: "courses#sign"
   post 'courses/unsubscribe/:id', to: "courses#unsubscribe"
+
+  post '/courses/update/:id', to: "courses#update"
+  post '/courses/edit/:id', to: "courses#edit"
 
   get 'sessions/new', as: 'login'
   get 'users/index', as: 'all'

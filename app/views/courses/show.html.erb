@@ -1,3 +1,10 @@
+<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content" id="m-body">
+        
+      </div>
+  </div>
+</div>
 <h1>Страница курса</h1>
 <%= @course.title %><br>
 <%= @course.part_fr %><br>
@@ -25,5 +32,18 @@
     </div>
 </div>
 <% end %>
+<%end%>
+<%if current_user.role == 1%>
+<div class="container">
+    <div class="row">
+        <div class='col-auto'>
+            <%= form_with url: "/courses/edit/#{@course.id}", method: :post do |form| %>
+            <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Изменить
+            </button>
+            <% end %> 
+        </div>
+    </div>
+</div>
 <%end%>
 <%=link_to "Назад",  home_path, class: "nav-link px-2", type: "button"%>
