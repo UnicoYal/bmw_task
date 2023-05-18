@@ -34,4 +34,30 @@ class CoursesController < ApplicationController
     redirect_to show_cu_path
   end
 
+  def add_user
+    @course = Course.find_by(id: params[:id])
+    @wrong_users = UsersAndCourse.where(course_id: @course.id).map {|el| el.user_id}
+    @users = User.where.not(id: @wrong_users)
+  end
+
+  def adding_to_course
+    UsersAndCourse.create({user_id: params[:user_id], course_id: params[:id]}) 
+    count_of_courses = Rating.find_by(user_id: params[:user_id]).all_courses
+    Rating.find_by(user_id: params[:user_id]).update(all_courses: count_of_courses+1)
+    redirect_to show_cu_path
+  end
+
+  def remove_user
+    @course = Course.find_by(id: params[:id])
+    @good_users = UsersAndCourse.where(course_id: @course.id, status: false).map {|el| el.user_id}
+    @users = User.where(id: @good_users)
+  end
+
+  def removing_from_course
+    UsersAndCourse.find_by({user_id: params[:user_id], course_id: params[:id]}).destroy 
+    count_of_courses = Rating.find_by(user_id: params[:user_id]).all_courses
+    Rating.find_by(user_id: params[:user_id]).update(all_courses: count_of_courses-1)
+    redirect_to show_cu_path
+  end
+
 end

@@ -45,5 +45,28 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    <div class="row">
+        <div class='col-auto'>
+            <%= form_with url: "/courses/add_user/#{@course.id}", method: :post do |form| %>
+            <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Добавить сотрудника в курс
+            </button>
+            <% end %> 
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class='col-auto'>
+            <%= form_with url: "/courses/remove_user/#{@course.id}", method: :post do |form| %>
+            <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Убрать сотрудника из курса
+            </button>
+            <% end %> 
+        </div>
+    </div>
+</div>
 <%end%>
 <%=link_to "Назад",  home_path, class: "nav-link px-2", type: "button"%>

@@ -16,6 +16,11 @@ Rails.application.routes.draw do
 
   post '/courses/update/:id', to: "courses#update"
   post '/courses/edit/:id', to: "courses#edit"
+  post '/courses/add_user/:id', to: "courses#add_user"
+  post '/courses/adding_to_course/:id', to: "courses#adding_to_course"
+
+  post '/courses/remove_user/:id', to: "courses#remove_user"
+  post '/courses/removing_from_course/:id', to: "courses#removing_from_course"
 
   get 'sessions/new', as: 'login'
   get 'users/index', as: 'all'
