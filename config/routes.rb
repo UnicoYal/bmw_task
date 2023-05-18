@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resource :session, only: %i[new create destroy]
   get 'users/index'
-  get 'users/new'
+  get 'users/new', as: "new_user"
   get 'users/edit', as: "edit_user"
   get 'users/create'
   get 'users/profile', as: "profile"

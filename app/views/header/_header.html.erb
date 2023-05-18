@@ -16,7 +16,7 @@
                       <li><%= button_to "Выйти", session_path, method: :delete, class: "nav-link px-2 text-white dropdown-item btn btn-lg", id: 'ex_btn'%></li>
                       </ul>
             <% else %>
-            <button type="button" class="btn btn-outline-light me-2 text-bg-dark"><%= link_to "Войти", login_path, class: 'nav-link px-2 text-white' %></button>
+            <button type="button" class="btn btn-outline-light me-2 text-bg-dark"><%= link_to "Войти как сотрудник", login_path, class: 'nav-link px-2 text-white' %></button>
             <button type="button" class="btn btn-outline-light me-2 text-bg-dark"><%= link_to "Зарегистрироваться", new_user_path, class: 'nav-link px-2 text-white' %></button>
             <% end %>
         </ul>

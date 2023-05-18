@@ -3,6 +3,7 @@
 <%= @course.part_fr %><br>
 <%= @course.part_sc %><br>
 <%= @course.main %><br>
+<% if current_user != nil %>
 <%if UsersAndCourse.find_by(user_id: current_user.id, course_id: @course.id) == nil%>
 <div class="row">
     <div class='col-auto'>
@@ -24,3 +25,5 @@
     </div>
 </div>
 <% end %>
+<%end%>
+<%=link_to "Назад",  home_path, class: "nav-link px-2", type: "button"%>
