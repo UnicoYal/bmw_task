@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post '/courses/remove_user/:id', to: "courses#remove_user"
   post '/courses/removing_from_course/:id', to: "courses#removing_from_course"
 
+  get 'ratings/download', as: "down"
   get 'sessions/new', as: 'login'
   get 'users/index', as: 'all'
   post 'users/update'
