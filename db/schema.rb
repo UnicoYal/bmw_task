@@ -41,9 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_162419) do
 
   create_table "courses", force: :cascade do |t|
     t.string "title"
-    t.text "part_fr"
-    t.text "part_sc"
-    t.text "main"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,7 +68,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_162419) do
 
   create_table "tests", force: :cascade do |t|
     t.integer "lesson_id"
-    t.boolean "pass"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

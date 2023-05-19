@@ -81,3 +81,62 @@
     gap: 10px;
     color: #828285;
 }
+.header{
+  background-color: #424a5a;
+}
+
+.white {
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.titles {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 200%;
+  max-width: 700px;
+  font-family: Arial, sans-serif;
+}
+
+.descs {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 120%;
+  max-width: 700px;
+  font-family: Arial, sans-serif;
+}
+
+.lessons {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 100%;
+  max-width: 700px;
+  font-family: Arial, sans-serif;
+}
+
+.def_text {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 110%;
+  max-width: 700px;
+  font-family: Arial, sans-serif;
+}
+
+.move_center {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+.move_left {
+  display: flex;
+  align-items: center;
+}
+
+.btn-container {
+  text-align: center;
+  display: inline-block;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+}

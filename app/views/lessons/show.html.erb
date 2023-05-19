@@ -1,5 +1,13 @@
-Урок <%= @lesson.number%>: <%= @lesson.title%>
-<%=link_to "Назад", "/courses/show/#{@lesson.course_id}", class: "nav-link px-2", type: "button"%>
+<div class = "descs"><h1>Урок <%= @lesson.number%>: <%= @lesson.title%></h1></div>
+<div class = "def_text"><%= @lesson.part_fr %><br></div>
+<div class = "move_center"><%= video_tag(polymorphic_path(@lesson.file), size: "500x400",controls: true)%></div>
+<div class = "def_text"><%= @lesson.part_sc %><br></div>
+<div class = "move_center"><% @lesson.pictures.each do |picture|%>
+  <%= image_tag(picture, style:"width:650px; height:700px") %></div>
+<%end%>
+<div class = "descs"><h1>Самое важное</h1></div>
+<div class = "def_text"><%= @lesson.main %><br></div>
+<div class = "move_center"><button type="button" class="btn btn-outline-light me-2 text-bg-dark"><%= link_to "Назад", "/courses/show/#{@lesson.course_id}", class: 'nav-link px-2 text-white' %></button></div>
 
-<h1>Тест по уроку</h1>
-<%=link_to "Перейти", "/tests/show/#{@lesson.id}", class: "nav-link px-2", type: "button"%>
+<div class = "descs"><h1>Тест по уроку</h1></div>
+<div class = "move_center"><button type="button" class="btn btn-outline-light me-2 text-bg-dark"><%= link_to "Перейти", "/tests/show/#{@lesson.id}", class: 'nav-link px-2 text-white' %></button></div>

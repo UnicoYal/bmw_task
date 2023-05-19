@@ -5,85 +5,73 @@
       </div>
   </div>
 </div>
-<h1>Страница курса</h1>
-<%= @course.title %><br>
-<%= @course.part_fr %><br>
-<%= video_tag(polymorphic_path(@course.file), size: "500x400",controls: true)%>
-<%= @course.part_sc %><br>
-<%= @course.main %><br>
-<% @course.pictures.each do |picture|%>
-  <%= image_tag(picture, style:"width:650px; height:700px") %>
-<%end%>
-
-<% if current_user != nil %>
-<%if UsersAndCourse.find_by(user_id: current_user.id, course_id: @course.id) != nil%>
-<h1>Уроки:</h1>
-<% @lessons.each do |les| %>
-  Урок <%= les.number %>: <%= les.title%> <%if les.pass == true %> <%= "✅"%> <%end%>
-  <%=link_to "Перейти в урок", "/lessons/show/#{les.id}", class: "nav-link px-2", type: "button"%>
-<%end%>
-<%end%>
-<%end%>
-
-
-
 <% if current_user != nil %>
 <%if UsersAndCourse.find_by(user_id: current_user.id, course_id: @course.id) == nil%>
-<div class="row">
-    <div class='col-auto'>
-        <%= form_with url: "/courses/sign/#{@course[:id]}", method: :post do |form| %>
-        <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Записаться на курс
-        </button>
-        <% end %> 
-    </div>
-</div>
+<div class = "btn-container">
+    <%= form_with url: "/courses/sign/#{@course[:id]}", method: :post do |form| %>
+    <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Записаться на курс
+    </button>
+    <% end %> 
 <% else %>
-<div class="row">
-    <div class='col-auto'>
-        <%= form_with url: "/courses/unsubscribe/#{@course[:id]}", method: :post do |form| %>
-        <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Отписаться от курса
-        </button>
-        <% end %> 
-    </div>
-</div>
-<% end %>
-<%end%>
+    <%= form_with url: "/courses/unsubscribe/#{@course[:id]}", method: :post do |form| %>
+    <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Отписаться от курса
+    </button>
+    <% end %> 
+<%end %>
 <%if current_user.role == 1 || current_user.role == 2%>
-<div class="container">
-    <div class="row">
-        <div class='col-auto'>
-            <%= form_with url: "/courses/edit/#{@course.id}", method: :post do |form| %>
-            <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Изменить
-            </button>
-            <% end %> 
-        </div>
-    </div>
-</div>
+      <%= form_with url: "/courses/edit/#{@course.id}", method: :post do |form| %>
+      <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Изменить описание курса
+      </button>
+      <% end %> 
 
-<div class="container">
-    <div class="row">
-        <div class='col-auto'>
-            <%= form_with url: "/courses/add_user/#{@course.id}", method: :post do |form| %>
-            <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Добавить сотрудника в курс
-            </button>
-            <% end %> 
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class='col-auto'>
-            <%= form_with url: "/courses/remove_user/#{@course.id}", method: :post do |form| %>
-            <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Убрать сотрудника из курса
-            </button>
-            <% end %> 
-        </div>
-    </div>
+    <%= form_with url: "/lessons/new/#{@course.id}", method: :post do |form| %>
+    <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Добавить урок
+    </button>
+    <% end %> 
+
+    <%= form_with url: "/courses/add_user/#{@course.id}", method: :post do |form| %>
+    <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Добавить сотрудника в курс
+    </button>
+    <% end %> 
+    <%= form_with url: "/courses/remove_user/#{@course.id}", method: :post do |form| %>
+    <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Убрать сотрудника из курса
+    </button>
+    <% end %> 
+  </div>
+<%end%>
+<%end%>
+<br>
+<div class = "descs"><h1>Программа</h1></div>
+
+<div class = "titles"><%= @course.title %><br></div><br>
+<div class = "descs"><%= @course.description %><br></div><br>
+
+
+<div class = "descs"><h1>Уроки</h1></div>
+<% @lessons.each do |les| %>
+  <div class = "lessons">Урок <%= les.number %>: <%= les.title%></div>
+  <div class = "move_center">
+<% if current_user != nil %>
+<%if UsersAndCourse.find_by(user_id: current_user.id, course_id: @course.id) != nil%>  
+  <div class="container">
+    <button type="button" class="btn btn-outline-light me-2 text-bg-dark" ><%=link_to "Перейти в урок", "/lessons/show/#{les.id}", class: 'nav-link px-2 text-white' %></button>
+  </div>
 </div>
 <%end%>
-<%=link_to "Назад",  home_path, class: "nav-link px-2", type: "button"%>
+<%end%>
+<%end%>
+
+
+
+
+<div class = "move_center">
+  <div class="container">
+    <button type="button" class="btn btn-outline-light me-2 text-bg-dark" ><%= link_to "Назад", home_path, class: 'nav-link px-2 text-white' %></button>
+  </div>
+</div>

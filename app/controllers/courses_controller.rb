@@ -31,7 +31,7 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find_by(id: params[:id])
-    @course.update({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main]})
+    @course.update({title: params[:title], description: params[:description]})
     redirect_to show_cu_path
   end
 
@@ -66,14 +66,14 @@ class CoursesController < ApplicationController
   end
 
   def create
-    Course.create({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], pictures: params[:pictures], file: params[:file], avatar: params[:avatar]})
+    Course.create({title: params[:title], description: params[:description], avatar: params[:avatar]})
     redirect_to home_path
   end
 
   private
 
   def course_params
-    params.require(:course).permit(:avatar,:file, pictures: [])
+    params.require(:course).permit(:avatar)
   end
 
 end

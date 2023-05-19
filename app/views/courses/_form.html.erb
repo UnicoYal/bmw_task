@@ -1,12 +1,8 @@
 <%= form_with url: "/courses/update/#{course.id}", method: :post do |form| %>
   <p><%= form.label :title, "Измените название" %></p>
   <p><%= form.text_field :title, value: course.title, class: 'form-control', id: 'question'%>
-  <p><%= form.label :part_fr, "Изменить часть над видео" %></p>
-  <p><%= form.text_field :part_fr, value: course.part_fr, class: 'form-control', id: 'question'%>
-    <p><%= form.label :part_sc, "Изменить часть под видео" %></p>
-  <p><%= form.text_field :part_sc, value: course.part_sc, class: 'form-control', id: 'question'%>
-  <p><%= form.label :main, "Изменить основную мысль" %></p>
-  <p><%= form.text_field :main, value: course.main, class: 'form-control', id: 'mark'%>
+  <p><%= form.label :description, "Изменить описание" %></p>
+  <p><%= form.text_field :description, value: course.description, class: 'form-control', id: 'question'%>
   <p><%= form.submit("Изменить", id: 'btn') %></p>
 <% end %>
 </div>

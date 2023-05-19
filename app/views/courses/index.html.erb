@@ -20,24 +20,18 @@
 </div>
 <%end%>
 <%end%>
-<h1>Courses#index</h1>
-<p>Find me in app/views/courses/index.html.erb</p>
 <h1>Все программы</h1>
 <div class="course__grid">
   <% @courses.each do |course| %>
     <div class="course__item">
       <div class="course__categories">
-        <span class="category">Охрана труда</span>
+        <span class="category"><%=course.title[0..55]%></span>
         <span class="course__free">Бесплатно</span>
       </div>
       <div class="course__info">
         <div class="course__title"><%= course.title%></div>
         <div class="course__description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias culpa cum, impedit neque repellendus?
-        </div>
-        <div class="course__price">
-          0
-          <span class="ruble">&#x20BD;</span>
+          <%= course.description%>
         </div>
       </div>
       <div class="course__avatar">
