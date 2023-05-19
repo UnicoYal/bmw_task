@@ -60,4 +60,13 @@ class CoursesController < ApplicationController
     redirect_to show_cu_path
   end
 
+  def create_course
+
+  end
+
+  def create
+    Course.create({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main]})
+    redirect_to home_path
+  end
+
 end

@@ -1,3 +1,21 @@
+<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content" id="m-body">
+        
+      </div>
+  </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class='col-auto'>
+            <%= form_with url: "/courses/create_course", method: :post do |form| %>
+            <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Создать курс
+            </button>
+            <% end %> 
+        </div>
+    </div>
+</div>
 <h1>Courses#index</h1>
 <p>Find me in app/views/courses/index.html.erb</p>
 <% @courses.each do |course| %>

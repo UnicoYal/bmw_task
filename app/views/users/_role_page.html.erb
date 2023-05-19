@@ -1,0 +1,11 @@
+<%= form_with url: "/users/changing_role/#{user.id}", method: :post do |form| %>
+ <p><%= form.label :role, "Выберите должность" %></p>
+          <%= form.radio_button :role, 0 %> Обычный сотрудник
+          <%= form.radio_button :role, 1 %> Наставник</p>
+          <%= form.radio_button :role, 2 %> Администратор</p>
+  <p><%= form.submit("Добавить", id: 'btn') %></p>
+<% end %>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+</div>

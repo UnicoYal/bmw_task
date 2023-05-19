@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_18_185936) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_091805) do
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.text "part_fr"
@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_185936) do
     t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "patronymic"
   end
 
   create_table "users_and_courses", force: :cascade do |t|

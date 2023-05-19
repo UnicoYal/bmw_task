@@ -1,4 +1,4 @@
-<% if current_user.role == 1%> 
+<% if current_user.role == 1 || current_user.role == 2%> 
 <button type="button" class="btn btn-outline-light me-2 text-bg-dark"><%= link_to "Скачать PDF", down_path, class: 'nav-link px-2 text-white' %></button>
 <%end%>
 <table class="table">
@@ -13,7 +13,7 @@
   <% user = User.find_by(id: rate.user_id)%> 
   <tbody>
     <tr>
-      <td><%= "#{user.first_name} #{user.second_name}" %></td>
+      <td><%= "#{user.second_name} #{user.first_name} #{user.patronymic}" %></td>
       <td><%= rate.all_courses %></td>
       <td><%= rate.finished_courses %></td>
     </tr>

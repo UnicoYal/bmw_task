@@ -1,0 +1,15 @@
+<%= form_with url: "/courses/create", method: :post do |form| %>
+  <p><%= form.label :title, "Введите название курса" %></p>
+  <p><%= form.text_field :title, class: 'form-control', id: 'question'%>
+  <p><%= form.label :part_fr, "Введите описание над видео" %></p>
+  <p><%= form.text_field :part_fr, class: 'form-control', id: 'question'%>
+    <p><%= form.label :part_sc, "Введите описание под видео" %></p>
+  <p><%= form.text_field :part_sc, class: 'form-control', id: 'question'%>
+  <p><%= form.label :main, "Введите основную мысль" %></p>
+  <p><%= form.text_field :main, class: 'form-control', id: 'mark'%>
+  <p><%= form.submit("Добавить", id: 'btn') %></p>
+<% end %>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+</div>

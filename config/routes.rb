@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get 'ratings/index', as: "rate"
   resource :session, only: %i[new create destroy]
-  get 'users/index'
   get 'users/new', as: "new_user"
   get 'users/edit', as: "edit_user"
   get 'users/create'
@@ -27,4 +26,9 @@ Rails.application.routes.draw do
   get 'users/index', as: 'all'
   post 'users/update'
   post 'users/create'
+  post 'users/update_role/:id', to: "users#update_role"
+  post 'users/changing_role/:id', to: "users#changing_role"
+
+  post 'courses/create_course', to: "courses#create_course"
+  post 'courses/create', to: "courses#create"
 end

@@ -1,2 +1,49 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content" id="m-body">
+        
+      </div>
+  </div>
+</div>
+<h1>Список сотрудников</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ФИО</th>
+      <th scope="col">Курсы, в которых принимает участие</th>
+      <th scope="col">Должность</th>
+    </tr>
+  </thead>
+<% @users.each do |user| %>
+  <tbody>
+  <% @user_courses = UsersAndCourse.where(user_id: user.id).map {|el| el.course_id}%>
+  <% @courses = "" %>
+  <% @user_courses.each {|el| @courses = "#{@courses} #{Course.find_by(id: el).title};"}%>
+    <tr>
+      <td><%= "#{user.second_name} #{user.first_name} #{user.patronymic}"%></td>
+      <td><%= @courses %></td>
+      <% if user.role == 0%>
+      <% @role = "Обычный сотрудник"%>
+      <%elsif user.role == 1%>
+       <% @role = "Наставник"%>
+       <% else %>
+        <% @role = "Администратор"%>
+        <%end%>
+      <td><%= @role %></td>
+      <td>
+      <div class="container">
+          <div class="row">
+              <div class='col-auto'>
+                  <%= form_with url: "/users/update_role/#{user.id}", method: :post do |form| %>
+                  <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  Изменить
+                  </button>
+                  <% end %> 
+              </div>
+          </div>
+      </div>
+  </td>
+    </tr>
+  </tbody>
+<%end%>
+</table>

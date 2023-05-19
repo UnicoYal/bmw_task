@@ -6,7 +6,10 @@ class UsersController < ApplicationController
   before_action :autorize, only: %i[edit update get_my_courses]
   include UsersHelper
 
-  def index; end
+  def index
+    @users = User.all
+    p @users
+  end
 
   def new
     @user = User.new
@@ -40,9 +43,19 @@ class UsersController < ApplicationController
     @param = params[:param]
   end
 
+  def update_role
+    @user = User.find_by(id: params[:id])
+  end
+
+  def changing_role
+    @user = User.find_by(id: params[:id])
+    @user.update!(role: params[:role])
+    redirect_to all_path
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:email, :first_name, :second_name, :password, :password_confirmation, :phone, :old_password)
+    params.require(:user).permit(:email, :first_name, :second_name, :password, :password_confirmation, :phone, :old_password, :role)
   end
 end
