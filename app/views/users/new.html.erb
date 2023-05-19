@@ -1,5 +1,5 @@
 <h4>Регистрация</h4>
-<%= form_with model: @user, url: '/users/create', nethod: :post do |form| %>
+<%= form_with model: @user, url: '/users/create', method: :post do |form| %>
   <p><%= form.label :email, "Введите email" %></p>
   <p><%= form.email_field :email, placeholder: 'E-mail', class: 'form-control', id: 'email' %></p>
   <p><%= form.label :first_name, "Введите имя" %></p>

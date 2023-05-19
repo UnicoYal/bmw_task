@@ -1,0 +1,9 @@
+<% $questions.each do |el| %>
+  <%="#{el.num} Вопрос: #{el.question}"%><br>
+  <% if @correct.include?(el.num) %>
+    <%="#{@your_ans[el.num-1]} ✅"%><br>
+  <% else %>
+    <%="#{@your_ans[el.num-1]} ❌"%><br>
+  <%end%>
+<%end%>
+<%=link_to "Назад в урок", "/lessons/show/#{Lesson.find_by(id: $test.lesson_id).id}", class: "nav-link px-2", type: "button"%>

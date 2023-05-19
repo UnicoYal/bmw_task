@@ -8,8 +8,25 @@
 <h1>Страница курса</h1>
 <%= @course.title %><br>
 <%= @course.part_fr %><br>
+<%= video_tag(polymorphic_path(@course.file), size: "500x400",controls: true)%>
 <%= @course.part_sc %><br>
 <%= @course.main %><br>
+<% @course.pictures.each do |picture|%>
+  <%= image_tag(picture, style:"width:650px; height:700px") %>
+<%end%>
+
+<% if current_user != nil %>
+<%if UsersAndCourse.find_by(user_id: current_user.id, course_id: @course.id) != nil%>
+<h1>Уроки:</h1>
+<% @lessons.each do |les| %>
+  Урок <%= les.number %>: <%= les.title%> <%if les.pass == true %> <%= "✅"%> <%end%>
+  <%=link_to "Перейти в урок", "/lessons/show/#{les.id}", class: "nav-link px-2", type: "button"%>
+<%end%>
+<%end%>
+<%end%>
+
+
+
 <% if current_user != nil %>
 <%if UsersAndCourse.find_by(user_id: current_user.id, course_id: @course.id) == nil%>
 <div class="row">

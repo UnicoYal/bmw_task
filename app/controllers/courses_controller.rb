@@ -6,6 +6,7 @@ class CoursesController < ApplicationController
 
   def show 
     @course = Course.find_by(id: params[:id])
+    @lessons = Lesson.where(course_id: params[:id])
   end
 
   def sign
@@ -65,8 +66,14 @@ class CoursesController < ApplicationController
   end
 
   def create
-    Course.create({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main]})
+    Course.create({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], pictures: params[:pictures], file: params[:file], avatar: params[:avatar]})
     redirect_to home_path
+  end
+
+  private
+
+  def course_params
+    params.require(:course).permit(:avatar,:file, pictures: [])
   end
 
 end

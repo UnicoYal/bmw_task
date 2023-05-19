@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'tests/ans', to: "tests#ans", as: "tests_ans"
+  post 'tests/show_question', to: "tests#show_question", as: "show_question"
+  post 'tests/testing', to: "tests#testing"
+  get 'tests/index'
+  get 'tests/show/:id', to: "tests#show", as: "show_test"
+  get 'lessons/index'
+  get 'lessons/show/:id', to: "lessons#show", as: "show_les"
   get 'ratings/index', as: "rate"
   resource :session, only: %i[new create destroy]
   get 'users/new', as: "new_user"

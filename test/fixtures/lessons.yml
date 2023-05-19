@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_id: 1
+  number: 1
+  pass: false
+
+two:
+  course_id: 1
+  number: 1
+  pass: false

@@ -12,7 +12,7 @@
                   <button type="button" class="btn btn-outline-light me-2 text-bg-dark"><%= link_to "Рейтинг", rate_path, class: 'nav-link px-2 text-white' %></button>
                   <li class="nav-item dropdown mr-auto btn btn-outline-light me-2 text-bg-dark">
                     <a class="nav-link dropdown-toggle nav-link px-2 text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Аккаунт
+                      <%= "#{current_user.first_name} #{current_user.second_name}"%>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end text-bg-dark" aria-labelledby="navbarDropdown">
                       <li><%=link_to "Личный кабинет",  profile_path, class: "nav-link px-2 text-white dropdown-item btn", type: "button"%></li>

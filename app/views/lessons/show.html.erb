@@ -1,0 +1,5 @@
+Урок <%= @lesson.number%>: <%= @lesson.title%>
+<%=link_to "Назад", "/courses/show/#{@lesson.course_id}", class: "nav-link px-2", type: "button"%>
+
+<h1>Тест по уроку</h1>
+<%=link_to "Перейти", "/tests/show/#{@lesson.id}", class: "nav-link px-2", type: "button"%>
