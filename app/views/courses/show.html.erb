@@ -6,8 +6,8 @@
   </div>
 </div>
 <% if current_user != nil %>
+  <div class = "btn-container">
 <%if UsersAndCourse.find_by(user_id: current_user.id, course_id: @course.id) == nil%>
-<div class = "btn-container">
     <%= form_with url: "/courses/sign/#{@course[:id]}", method: :post do |form| %>
     <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     Записаться на курс

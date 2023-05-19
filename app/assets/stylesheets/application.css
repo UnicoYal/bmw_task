@@ -136,8 +136,8 @@
 
 .btn-container {
   text-align: center;
-  display: inline-block;
   flex-wrap: wrap;
+    flex-direction: column;
   display: flex;
   justify-content: center;
 }
