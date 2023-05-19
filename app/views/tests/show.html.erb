@@ -1,9 +1,10 @@
 <%= form_with url: '/tests/ans', method: :get do |form| %>
 <% $questions.each do |que| %>
+  <div class = "move_left"><h3><%= que.question %><h3></div>
   <p><%= form.label "ans#{que.num}".to_s, "Выберите ответ" %></p><div id = <%"ans_res#{que.num}"%>></div>
-          <%= form.radio_button "ans#{que.num}".to_s, que.answer %> <%= que.answer%>
-          <%= form.radio_button "ans#{que.num}".to_s, "wrong" %> Наставник</p>
-          <%= form.radio_button "ans#{que.num}".to_s, "wrong" %> Администратор</p>
+          <p><%= form.radio_button "ans#{que.num}".to_s, que.answer %> <%= que.answer%>
+          <p><%= form.radio_button "ans#{que.num}".to_s, que.wrong_first %> <%= que.wrong_first%></p>
+          <p><%= form.radio_button "ans#{que.num}".to_s, que.wrong_second %> <%= que.wrong_second%></p>
 <% end %>
  <div class='col-auto'>
     <%= submit_tag("Сохранить", class: "btn btn-info", id: 'btn') %>

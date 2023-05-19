@@ -7,7 +7,7 @@
 <%end%>
 <div class = "descs"><h1>Самое важное</h1></div>
 <div class = "def_text"><%= @lesson.main %><br></div>
-<div class = "move_center"><button type="button" class="btn btn-outline-light me-2 text-bg-dark"><%= link_to "Назад", "/courses/show/#{@lesson.course_id}", class: 'nav-link px-2 text-white' %></button></div>
+<div class = "move_center"><%= button_to "Назад", "/courses/show/#{@lesson.course_id}",method: :get, class: "btn btn-outline-light me-2 text-bg-dark" %></button></div>
 
 <div class = "descs"><h1>Тест по уроку</h1></div>
-<div class = "move_center"><button type="button" class="btn btn-outline-light me-2 text-bg-dark"><%= link_to "Перейти", "/tests/show/#{@lesson.id}", class: 'nav-link px-2 text-white' %></button></div>
+<div class = "move_center"><%= button_to "Перейти", "/tests/show/#{@lesson.id}", method: :get,class: "btn btn-outline-light me-2 text-bg-dark" %></button></div>

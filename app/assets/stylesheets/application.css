@@ -130,7 +130,8 @@
 
 .move_left {
   display: flex;
-  align-items: center;
+  font-size: 110%;
+  font-family: Arial, sans-serif;
 }
 
 .btn-container {

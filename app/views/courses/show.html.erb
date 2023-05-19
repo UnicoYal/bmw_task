@@ -20,6 +20,7 @@
     </button>
     <% end %> 
 <%end %>
+<%= button_to "Назад", home_path, method: :get, class:"btn btn-outline-light me-2 text-bg-dark" %>
 <%if current_user.role == 1 || current_user.role == 2%>
       <%= form_with url: "/courses/edit/#{@course.id}", method: :post do |form| %>
       <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -60,18 +61,9 @@
 <% if current_user != nil %>
 <%if UsersAndCourse.find_by(user_id: current_user.id, course_id: @course.id) != nil%>  
   <div class="container">
-    <button type="button" class="btn btn-outline-light me-2 text-bg-dark" ><%=link_to "Перейти в урок", "/lessons/show/#{les.id}", class: 'nav-link px-2 text-white' %></button>
+    <%=button_to "Перейти в урок", "/lessons/show/#{les.id}", method: :get, class: "btn btn-outline-light me-2 text-bg-dark" %></button>
   </div>
 </div>
 <%end%>
 <%end%>
 <%end%>
-
-
-
-
-<div class = "move_center">
-  <div class="container">
-    <button type="button" class="btn btn-outline-light me-2 text-bg-dark" ><%= link_to "Назад", home_path, class: 'nav-link px-2 text-white' %></button>
-  </div>
-</div>

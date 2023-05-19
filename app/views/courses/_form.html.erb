@@ -3,7 +3,7 @@
   <p><%= form.text_field :title, value: course.title, class: 'form-control', id: 'question'%>
   <p><%= form.label :description, "Изменить описание" %></p>
   <p><%= form.text_field :description, value: course.description, class: 'form-control', id: 'question'%>
-  <p><%= form.submit("Изменить", id: 'btn') %></p>
+  <p><%= form.submit("Изменить", class: "btn btn-outline-light me-2 text-bg-dark") %></p>
 <% end %>
 </div>
 <div class="modal-footer">

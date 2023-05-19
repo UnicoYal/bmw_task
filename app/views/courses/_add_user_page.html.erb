@@ -1,7 +1,7 @@
 <%= form_with url: "/courses/adding_to_course/#{course.id}", method: :post do |form| %>
   <p><%= form.label :user_id, "Выберите сотрудника" %></p>
-  <%= form.select :user_id, @users.map {|el| ["#{el.first_name} #{el.second_name}", el.id]} %>
-  <p><%= form.submit("Добавить", id: 'btn') %></p>
+  <p><%= form.select :user_id, @users.map {|el| ["#{el.first_name} #{el.second_name}", el.id]} %>
+  <p><%= form.submit("Добавить", class: "btn btn-outline-light me-2 text-bg-dark") %></p>
 <% end %>
 </div>
 <div class="modal-footer">

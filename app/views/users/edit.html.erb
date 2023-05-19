@@ -10,7 +10,7 @@
   <p><%= form.text_field :phone, class: 'form-control', id: 'number' %></p>
   <p><%= form.label :old_password, "Введите старый пароль" %></p>
   <p><%= form.password_field :old_password, class: 'form-control', id: 'passw_old' %></p>
-  <p><%= form.submit("Обновить", id: 'btn_up_user') %></p>
+  <p><%= form.submit("Обновить", class: "btn btn-outline-light me-2 text-bg-dark") %></p>
 <% end %>
-
+<%=button_to "Назад",  profile_path, method: :get, class: "btn btn-outline-light me-2 text-bg-dark" %></button>
 <div id='error_response-container'></div>
