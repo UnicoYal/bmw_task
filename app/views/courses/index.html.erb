@@ -22,20 +22,48 @@
 <%end%>
 <h1>Courses#index</h1>
 <p>Find me in app/views/courses/index.html.erb</p>
-<% @courses.each do |course| %>
-<%= course.title %>
-<% if course.avatar.attached? %>
-<%= image_tag(course.avatar, style:"width:150px; height:150px")%>
-<%end%>
-<div class="container">
-              <div class="row">
-                  <div class='col-auto'>
-                      <%= form_with url: "/courses/show/#{course[:id]}", method: :get do |form| %>
-                      <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                      Просмотреть курс
-                      </button>
-                      <% end %> 
-                  </div>
-              </div>
-          </div>
-<% end %>
+<h1>Все программы</h1>
+<div class="course__grid">
+  <% @courses.each do |course| %>
+    <div class="course__item">
+      <div class="course__categories">
+        <span class="category">Охрана труда</span>
+        <span class="course__free">Бесплатно</span>
+      </div>
+      <div class="course__info">
+        <div class="course__title"><%= course.title%></div>
+        <div class="course__description">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias culpa cum, impedit neque repellendus?
+        </div>
+        <div class="course__price">
+          0
+          <span class="ruble">&#x20BD;</span>
+        </div>
+      </div>
+      <div class="course__avatar">
+        <% if course.avatar.attached? %>
+          <%= image_tag(course.avatar, style:"width:150px; height:150px")%>
+        <%end%>
+      </div>
+      <div class="course__additional">
+        <div class="course__additionals">
+          <i class="material-icons">date_range</i>
+          <span class="additional">2 месяца</span>
+          <i class="material-icons">sports_soccer</i>
+          <span class="additional">Сертификат по программе</span>
+          <i class="material-icons">date_range</i>
+          <span class="additional">2 часа</span>
+        </div>
+        <%= form_with url: "/courses/show/#{course[:id]}", method: :get do |form| %>
+          <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Просмотреть курс
+          </button>
+        <% end %>
+      </div>
+    </div>
+
+
+
+  <% end %>
+</div>
+
