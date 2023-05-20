@@ -1,9 +1,13 @@
 <div class = "descs"><h1>Урок <%= @lesson.number%>: <%= @lesson.title%></h1></div>
 <div class = "def_text"><%= @lesson.part_fr %><br></div>
+<%if @lesson.file.attached?%>
 <div class = "move_center"><%= video_tag(polymorphic_path(@lesson.file), size: "500x400",controls: true)%></div>
+<%end%>
 <div class = "def_text"><%= @lesson.part_sc %><br></div>
+<%if @lesson.pictures.attached?%>
 <div class = "move_center"><% @lesson.pictures.each do |picture|%>
   <%= image_tag(picture, style:"width:650px; height:700px") %></div>
+<%end%>
 <%end%>
 <div class = "descs"><h1>Самое важное</h1></div>
 <div class = "def_text"><%= @lesson.main %><br></div>
