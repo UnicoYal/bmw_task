@@ -72,4 +72,4 @@ group :test do
   gem "webdrivers"
 end
 
-gem "prawn", "~> 2.4"
+# gem "prawn", "~> 2.4"
