@@ -47,6 +47,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_212848) do
     t.text "description"
   end
 
+  create_table "courses_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.boolean "status", default: false
+    t.index ["course_id"], name: "index_courses_users_on_course_id"
+    t.index ["user_id"], name: "index_courses_users_on_user_id"
+  end
+
   create_table "lessons", force: :cascade do |t|
     t.integer "course_id"
     t.integer "number"
@@ -83,14 +91,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_212848) do
     t.string "phone"
     t.integer "role", default: 0
     t.string "patronymic"
-  end
-
-  create_table "users_and_courses", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "course_id"
-    t.boolean "status", default: false
-    t.index ["course_id"], name: "index_users_and_courses_on_course_id"
-    t.index ["user_id"], name: "index_users_and_courses_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

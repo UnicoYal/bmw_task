@@ -4,7 +4,7 @@ class User < ApplicationRecord
   attr_accessor :old_password
 
   has_secure_password validations: false
-  has_and_belongs_to_many :courses
+  has_many :courses_user
   has_one :rating
   # has_many :service_records
   # has_many :consultations

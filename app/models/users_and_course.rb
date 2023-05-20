@@ -1,2 +1,0 @@
-class UsersAndCourse < ApplicationRecord
-end

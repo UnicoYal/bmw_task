@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   def get_my_courses
-    @my_courses = UsersAndCourse.where(user_id: current_user.id)
+    @my_courses = CoursesUser.where(user_id: current_user.id)
     @param = params[:param]
   end
 

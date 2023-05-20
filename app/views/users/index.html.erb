@@ -16,7 +16,7 @@
   </thead>
 <% @users.each do |user| %>
   <tbody>
-  <% @user_courses = UsersAndCourse.where(user_id: user.id).map {|el| el.course_id}%>
+  <% @user_courses = CoursesUser.where(user_id: user.id).map {|el| el.course_id}%>
   <% @courses = "" %>
   <% @user_courses.each {|el| @courses = "#{@courses} #{Course.find_by(id: el).title};"}%>
     <tr>

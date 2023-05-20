@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post '/courses/adding_to_course/:id', to: "courses#adding_to_course"
   post '/courses/remove_user/:id', to: "courses#remove_user"
   post '/courses/removing_from_course/:id', to: "courses#removing_from_course"
-  # post '/courses/destroy/:id', to: "courses#destroy"
+  post '/courses/destroy/:id', to: "courses#destroy"
   post 'courses/create_course', to: "courses#create_course"
   post 'courses/create', to: "courses#create"
 
