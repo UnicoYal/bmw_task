@@ -10,6 +10,12 @@
 Course.all.each do |cour|
   cour.destroy
 end
+Rating.all.each do |rat|
+  rat.destroy
+end
+CoursesUser.all.each do |cu|
+  cu.destroy
+end
 Lesson.all.each do |les|
   les.destroy
 end
