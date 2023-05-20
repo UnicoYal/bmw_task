@@ -81,6 +81,9 @@ class CoursesController < ApplicationController
     CoursesUser.where(course_id: @course.id).each do |el|
       el.destroy
     end
+    Rating.where(course_id: @course.id).each do |rat|
+      rat.all_courses -= 1
+    end
     @course.destroy
     redirect_to home_path
   end
