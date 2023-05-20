@@ -15,10 +15,11 @@ class CoursesController < ApplicationController
     count = Rating.find_by(user_id: current_user.id)
     if count != nil
       count_of_courses = count.all_courses 
+      Rating.find_by(user_id: current_user.id).update(all_courses: count_of_courses+1)
     else
-      count_of_courses = 1
+      count_of_courses = 0
+      Rating.create(user_id: current_user.id, all_courses: count_of_courses+1, finished_courses: 0)
     end
-    Rating.find_by(user_id: current_user.id).update(all_courses: count_of_courses+1)
     redirect_to show_cu_path
   end
 
