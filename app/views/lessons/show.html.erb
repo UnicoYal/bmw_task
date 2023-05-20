@@ -1,17 +1,35 @@
-<div class = "descs"><h1>Урок <%= @lesson.number%>: <%= @lesson.title%></h1></div>
-<div class = "def_text"><%= @lesson.part_fr %><br></div>
-<%if @lesson.file.attached?%>
-<div class = "move_center"><%= video_tag(polymorphic_path(@lesson.file), size: "500x400",controls: true)%></div>
-<%end%>
-<div class = "def_text"><%= @lesson.part_sc %><br></div>
-<%if @lesson.pictures.attached?%>
-<div class = "move_center"><% @lesson.pictures.each do |picture|%>
-  <%= image_tag(picture, style:"width:650px; height:700px") %></div>
-<%end%>
-<%end%>
-<div class = "descs"><h1>Самое важное</h1></div>
-<div class = "def_text"><%= @lesson.main %><br></div>
-<div class = "move_center"><%= button_to "Назад", "/courses/show/#{@lesson.course_id}",method: :get, class: "btn btn-outline-light me-2 text-bg-dark" %></button></div>
 
-<div class = "descs"><h1>Тест по уроку</h1></div>
-<div class = "move_center"><%= button_to "Перейти", "/tests/show/#{@lesson.id}", method: :get,class: "btn btn-outline-light me-2 text-bg-dark" %></button></div>
+<div class="lessons__container">
+  <div class = "descs"><h1>Урок <%= @lesson.number%>: <%= @lesson.title%></h1></div>
+  <div class = "theory__areas">
+    <span class="theory__number">1</span>
+    <span class="theory__description"><%= @lesson.part_fr %></span>
+  </div>
+  <%if @lesson.file.attached?%>
+    <div class = "move_center"><%= video_tag(polymorphic_path(@lesson.file), size: "640x360",controls: true)%></div>
+  <%end%>
+  <div class = "theory__areas">
+    <span class="theory__number">2</span>
+    <span class="theory__description"><%= @lesson.part_sc %></span>
+  </div>
+  <%if @lesson.pictures.attached?%>
+    <div class = "move_center"><% @lesson.pictures.each do |picture|%>
+        <%= image_tag(picture, style:"width:671px; height:543px") %></div>
+      <%end%>
+  <%end%>
+  <div class = "descs"><h1>Самое важное</h1></div>
+  <div class = "theory__areas">
+    <span class="theory__number">3</span>
+    <span class="theory__description"><%= @lesson.main %></span>
+  </div>
+
+
+  <div class = "theory__areas">
+    <span class="theory__number">4</span>
+    <span class="theory__description"><span class="lesson__quiz__title">Тест по уроку</span></span>
+    <div class="lesson__buttons">
+      <%= button_to "Назад", "/courses/show/#{@lesson.course_id}",method: :get, class: "btn btn-outline-light me-2 text-bg-dark" %>
+      <%= button_to "Перейти", "/tests/show/#{@lesson.id}", method: :get,class: "btn btn-outline-light me-2 text-bg-dark" %>
+    </div>
+  </div>
+</div>

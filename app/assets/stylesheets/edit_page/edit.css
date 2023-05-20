@@ -1,0 +1,9 @@
+.update__container {
+    display: flex;
+    /*justify-content: center;*/
+}
+.update__btns {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}

@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+* {
+    font-family: "Helvetica", sans-serif;
+}
 
 /*Секция с курсами*/
 .course__grid {
@@ -98,12 +101,46 @@
   font-family: Arial, sans-serif;
 }
 
+/*Lessons styles*/
+
 .descs {
   text-align: center;
   margin: 0 auto;
   font-size: 120%;
-  max-width: 700px;
-  font-family: Arial, sans-serif;
+
+    width: 100%;
+    color: #424a5a;
+  font-family: inherit;
+}
+
+.lessons__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.theory__areas {
+    border-top: 1px #8a9bbd dashed;
+    border-bottom: 1px #8a9bbd dashed;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr 10fr 0fr);
+    padding: 20px 0;
+    gap: 20px;
+    position: relative;
+    margin: 30px 0;
+    width: 75%;
+}
+
+.theory__number {
+    font-weight: 900;
+    font-size: 2.5em;
+}
+.theory__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .lessons {
@@ -111,8 +148,19 @@
   margin: 0 auto;
   font-size: 100%;
   max-width: 700px;
-  font-family: Arial, sans-serif;
+  font-family: inherit;
 }
+
+.lesson__buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.lesson__quiz__title {
+    font-size: 2em;
+}
+
 
 .def_text {
   text-align: center;
@@ -137,7 +185,7 @@
 .btn-container {
   text-align: center;
   flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
   display: flex;
   justify-content: center;
 }
