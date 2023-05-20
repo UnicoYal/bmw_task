@@ -4,7 +4,6 @@ class CreateLessons < ActiveRecord::Migration[7.0]
       t.integer :course_id
       t.integer :number
 
-      t.timestamps
     end
   end
 end

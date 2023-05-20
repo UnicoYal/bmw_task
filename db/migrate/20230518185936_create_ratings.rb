@@ -5,7 +5,6 @@ class CreateRatings < ActiveRecord::Migration[7.0]
       t.integer :all_courses
       t.integer :finished_courses
 
-      t.timestamps
     end
   end
 end

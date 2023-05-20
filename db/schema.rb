@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_05_19_212848) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -42,20 +45,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_212848) do
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
-# Could not dump table "lessons" because of following StandardError
-#   Unknown type 'test' for column 'part_fr'
+  create_table "lessons", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "number"
+    t.string "title"
+    t.text "part_fr"
+    t.text "part_sc"
+    t.text "main"
+  end
 
   create_table "questions", force: :cascade do |t|
     t.integer "test_id"
     t.integer "num"
     t.string "question"
     t.string "answer"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "wrong_first"
     t.string "wrong_second"
   end
@@ -64,14 +69,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_212848) do
     t.integer "user_id"
     t.integer "all_courses"
     t.integer "finished_courses"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "tests", force: :cascade do |t|
     t.integer "lesson_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -81,16 +82,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_212848) do
     t.string "password_digest"
     t.string "phone"
     t.integer "role", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "patronymic"
   end
 
   create_table "users_and_courses", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "course_id"
     t.boolean "status", default: false
     t.index ["course_id"], name: "index_users_and_courses_on_course_id"
     t.index ["user_id"], name: "index_users_and_courses_on_user_id"
