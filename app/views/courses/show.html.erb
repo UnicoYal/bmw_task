@@ -64,7 +64,7 @@
   <div class = "lessons">Урок <%= les.number %>: <%= les.title%></div>
   <div class = "move_center">
 <% if current_user != nil %>
-<%if CourseUser.find_by(user_id: current_user.id, course_id: @course.id) != nil%>  
+<%if CoursesUser.find_by(user_id: current_user.id, course_id: @course.id) != nil%>  
   <div class="container">
     <%=button_to "Перейти в урок", "/lessons/show/#{les.id}", method: :get, class: "btn btn-outline-light me-2 text-bg-dark" %></button>
   </div>
