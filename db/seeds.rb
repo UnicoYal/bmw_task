@@ -10,9 +10,17 @@
 Course.all.each do |cour|
   cour.destroy
 end
+Lesson.all.each do |les|
+  les.destroy
+end
+Test.all.each do |tes|
+  tes.destroy
+end
 Course.create({                       	                                              	 
   title: "Психология безопасности: почему человек рискует",   
   description: "Разберетесь в причинах и последствиях несчастных случаев. Узнаете, из каким этапов состоит эволюция безопасности."})
+@course = Course.first
+@course.avatar.attach(io: File.open('app/assets/images/brain.jpg'), filename: 'brain.jpg')
 Lesson.create({course_id: Course.first.id,
   number: 1,
   title: "Причины несчастных случаев",
@@ -28,21 +36,21 @@ Lesson.create({course_id: Course.first.id,
 
 Test.create(lesson_id: Lesson.first.id)
 Question.create({              	 
-  test_id: 1,
+  test_id: Test.first.id,
   num: 1,
   question: "Из-за чего происходит большинство несчастных случаев?",
   answer: "Из-за опасного поведения работников",
   wrong_first: "Из-за условий на работе",
   wrong_second: "Нет правильного ответа"})
   Question.create({
-  test_id: 1,
+  test_id: Test.first.id,
   num: 2,
   question: "Кто изучал поведение работников и обнаружил связь между опасными действиями и несчастными случаями?",
   answer: "Герберт Хенрих",
   wrong_first: "Илон Маск",
   wrong_second: "Генри Форд"  })
   Question.create({
-  test_id: 1,
+  test_id: Test.first.id,
   num: 3,
   question: "В виде какой диаграммы Гербер Хенрих представил свои исследования?",
   answer: "Пирамиды",
@@ -50,7 +58,7 @@ Question.create({
   wrong_second: "Граф"
   })
 Question.create({
-  test_id: 1,
+  test_id: Test.first.id,
   num: 4,
   question: "Несчастных случаев станет меньше, если",
   answer: "Работники не будут ошибаться и поступать необдуманно",
