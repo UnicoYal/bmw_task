@@ -1,0 +1,9 @@
+<%= form_with url: "/admins/removing_from_course/#{course.id}", method: :post do |form| %>
+  <p><%= form.label :user_id, "Выберите сотрудника" %></p>
+  <p><%= form.select :user_id, @users.map {|el| ["#{el.first_name} #{el.second_name}", el.id]} %>
+  <p><%= form.submit("Убрать", class: "btn btn-outline-light me-2 text-bg-dark") %></p>
+<% end %>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+</div>

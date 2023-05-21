@@ -5,8 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-
-# User.create!({first_name: "Админ", second_name: "Админов", patronymic: "Админович", email: "admin@gmail.ru", phone: "+79111111112", password: "password", password_confirmation: "password", role: 2})
+User.all.each do |us|
+  us.destroy
+end
+User.create!({first_name: "Админ", second_name: "Админов", patronymic: "Админович", email: "admin@gmail.ru", phone: "+79111111112", password: "password", password_confirmation: "password", role: 2})
 Course.all.each do |cour|
   cour.destroy
 end
@@ -22,6 +24,7 @@ end
 Test.all.each do |tes|
   tes.destroy
 end
+Rating.create({user_id: User.first.id, all_courses: 0, finished_courses: 0})
 Course.create({                       	                                              	 
   title: "Психология безопасности: почему человек рискует",   
   description: "Разберетесь в причинах и последствиях несчастных случаев. Узнаете, из каким этапов состоит эволюция безопасности."})

@@ -1,0 +1,24 @@
+<%= form_with model: @user, url: '/admins/create_user', method: :post do |form| %>
+  <p><%= form.label :email, "Введите email сотрудника" %></p>
+  <p><%= form.email_field :email, placeholder: 'E-mail', class: 'form-control', id: 'email' %></p>
+  <p><%= form.label :first_name, "Введите имя сотрудника" %></p>
+  <p><%= form.text_field :first_name, placeholder: 'Имя', class: 'form-control', id: 'first_name' %></p>
+  <p><%= form.label :second_name, "Введите фамилию сотрудника" %></p>
+  <p><%= form.text_field :second_name, placeholder: 'Фамилия', class: 'form-control', id: 'second_name'%></p>
+  <p><%= form.label :patronymic, "Введите отчество сотрудника" %></p>
+  <p><%= form.text_field :patronymic, placeholder: 'Отчество', class: 'form-control', id: 'second_name'%></p>
+  <p><%= form.label :phone, "Введите номер телефона сотрудника"%></p>
+  <p><%= form.text_field :phone, class: 'form-control', id: 'phone' %></p>
+   <p><%= form.label :role, "Выберите должность" %></p>
+          <p><%= form.radio_button :role, 0 %> Обычный сотрудник
+          <%= form.radio_button :role, 1 %> Наставник
+          <%= form.radio_button :role, 2 %> Администратор
+  <p><%= form.label :password, "Введите пароль сотрудника" %></p>
+  <p><%= form.password_field :password, class: 'form-control', id: 'pass' %></p>
+  <p><%= form.label :password_confirmation, "Повторите пароль" %></p>
+  <p><%= form.password_field :password_confirmation, class: 'form-control', id: 'pass_conf' %></p>
+  <p><%= form.submit("Зарегистрировать сотрудника", id: 'btn', class: "btn btn-outline-light me-2 text-bg-dark") %></p>
+<% end %>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+</div>

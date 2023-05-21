@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   has_secure_password validations: false
   has_many :courses_user
-  has_one :rating
+  has_one :rating, dependent: :destroy
   # has_many :service_records
   # has_many :consultations
   # has_one :work

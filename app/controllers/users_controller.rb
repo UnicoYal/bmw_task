@@ -8,7 +8,6 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    p @users
   end
 
   def new
@@ -41,16 +40,6 @@ class UsersController < ApplicationController
   def get_my_courses
     @my_courses = CoursesUser.where(user_id: current_user.id)
     @param = params[:param]
-  end
-
-  def update_role
-    @user = User.find_by(id: params[:id])
-  end
-
-  def changing_role
-    @user = User.find_by(id: params[:id])
-    @user.update!(role: params[:role])
-    redirect_to all_path
   end
 
   private

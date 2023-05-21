@@ -5,6 +5,17 @@
       </div>
   </div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class='col-auto'>
+            <%= form_with url: "/admins/modal_create_user", method: :post do |form| %>
+            <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Добавить сотрудника
+            </button>
+            <% end %> 
+        </div>
+    </div>
+</div>
 <h1>Список сотрудников</h1>
 <table class="table">
   <thead>
@@ -34,9 +45,22 @@
       <div class="container">
           <div class="row">
               <div class='col-auto'>
-                  <%= form_with url: "/users/update_role/#{user.id}", method: :post do |form| %>
+                  <%= form_with url: "/admins/update_role/#{user.id}", method: :post do |form| %>
                   <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                  Изменить
+                  Изменить должность
+                  </button>
+                  <% end %> 
+              </div>
+          </div>
+      </div>
+  </td>
+  <td>
+      <div class="container">
+          <div class="row">
+              <div class='col-auto'>
+                  <%= form_with url: "/admins/destroy_user/#{user.id}", method: :post do |form| %>
+                  <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  Удалить
                   </button>
                   <% end %> 
               </div>
