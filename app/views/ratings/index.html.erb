@@ -1,19 +1,31 @@
-<table class="table">
-  <thead>
+<script>
+    function generatePDF() {
+        const element = document.getElementById('invoice');
+        html2pdf()
+            .from(element)
+            .save("Ratings.pdf");
+    }
+</script>
+
+<div id="invoice">
+  <table class="table">
+    <thead>
     <tr>
       <th scope="col">Сотрудник</th>
       <th scope="col">Количество всех курсов, в которых принимает участие</th>
       <th scope="col">Количество завершенных курсов</th>
     </tr>
-  </thead>
-<% @ratings.each do |rate| %>
-  <% user = User.find_by(id: rate.user_id)%> 
-  <tbody>
-    <tr>
-      <td><%= "#{user.second_name} #{user.first_name} #{user.patronymic}" %></td>
-      <td><%= rate.all_courses %></td>
-      <td><%= rate.finished_courses %></td>
-    </tr>
-  </tbody>
-<%end%>
-</table>
+    </thead>
+    <% @ratings.each do |rate| %>
+      <% user = User.find_by(id: rate.user_id)%>
+      <tbody>
+      <tr>
+        <td><%= "#{user.second_name} #{user.first_name} #{user.patronymic}" %></td>
+        <td><%= rate.all_courses %></td>
+        <td><%= rate.finished_courses %></td>
+      </tr>
+      </tbody>
+    <%end%>
+  </table>
+</div>
+<button onclick="generatePDF()">Скачать PDF</button>
