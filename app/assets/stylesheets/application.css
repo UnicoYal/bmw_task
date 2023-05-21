@@ -189,3 +189,7 @@
   display: flex;
   justify-content: center;
 }
+
+.modal {
+  overflow: scroll;
+  } 
