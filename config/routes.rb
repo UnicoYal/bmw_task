@@ -36,6 +36,9 @@ Rails.application.routes.draw do
   get 'tests/ans', to: "tests#ans", as: "tests_ans"
   post 'tests/show_question', to: "tests#show_question", as: "show_question"
   post 'tests/testing', to: "tests#testing"
+  post 'tests/select_num/:id', to: "tests#select_num", as: "selnum_test"
+  post 'tests/create/:id', to: "tests#create", as: "create_test"
+  post 'tests/create_questions/:id', to: "tests#create_questions", as: "cr_quests"
 
   post 'admins/update_role/:id', to: "admins#update_role"
   post 'admins/changing_role/:id', to: "admins#changing_role"

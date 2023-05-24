@@ -1,0 +1,17 @@
+<%= form_with url: "/tests/create/#{lesson.id}", method: :post do |form| %>
+  <% $count.times do |i| %>
+  <p><%= form.label "question#{i}".to_s, "Введите #{i+1} вопрос" %></p>
+  <p><%= form.text_field "question#{i}".to_s, class: 'form-control', id: 'question'%>
+  <p><%= form.label "answer#{i}".to_s, "Введите правильный ответ" %></p>
+  <p><%= form.text_field "answer#{i}".to_s, class: 'form-control', id: 'question'%>
+  <p><%= form.label "wrong_first#{i}".to_s, "Введите неправильный ответ" %></p>
+  <p><%= form.text_field "wrong_first#{i}".to_s, class: 'form-control', id: 'question'%>
+  <p><%= form.label "wrong_second#{i}".to_s, "Введите неправильный ответ" %></p>
+  <p><%= form.text_field "wrong_second#{i}".to_s, class: 'form-control', id: 'question'%>
+  <%end%>
+  <p><%= form.submit("Создать", class: "btn btn-outline-light me-2 text-bg-dark") %></p>
+<% end %>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+</div>

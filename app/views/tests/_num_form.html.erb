@@ -1,0 +1,9 @@
+<%= form_with url: "/tests/create_questions/#{lesson.id}", method: :post do |form| %>
+  <p><%= form.label :count, "Введите количество номеров в тесте" %></p>
+  <p><%= form.number_field :count, min: 1, class: 'form-control', id: 'question'%>
+  <p><%= form.submit("Далее", class: "btn btn-outline-light me-2 text-bg-dark") %></p>
+<% end %>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+</div>

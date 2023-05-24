@@ -1,3 +1,10 @@
+<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="m-body">
+        
+      </div>
+  </div>
+</div>
 
 <div class="lessons__container">
   <div class = "descs"><h1>Урок <%= @lesson.number%>: <%= @lesson.title%></h1></div>
@@ -23,13 +30,23 @@
     <span class="theory__description"><%= @lesson.main %></span>
   </div>
 
-
+<% if Test.find_by(lesson_id: @lesson.id) != nil%>
   <div class = "theory__areas">
     <span class="theory__number">4</span>
     <span class="theory__description"><span class="lesson__quiz__title">Тест по уроку</span></span>
     <div class="lesson__buttons">
-      <%= button_to "Назад", "/courses/show/#{@lesson.course_id}",method: :get, class: "btn btn-outline-light me-2 text-bg-dark" %>
       <%= button_to "Перейти", "/tests/show/#{@lesson.id}", method: :get,class: "btn btn-outline-light me-2 text-bg-dark" %>
     </div>
   </div>
 </div>
+<% elsif Test.find_by(lesson_id: @lesson.id) == nil && current_user.role == 2 %>
+  <div class = "theory__areas">
+    <span class="theory__number">4</span>
+    <span class="theory__description"><span class="lesson__quiz__title">Тест по уроку</span></span>
+    <%= form_with url: "/tests/select_num/#{@lesson.id}", method: :post do |form| %>
+        <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Создать</button>
+    <% end %> 
+  </div>
+</div>
+<%end%>
+ <%= button_to "Назад", "/courses/show/#{@lesson.course_id}",method: :get, class: "btn btn-outline-light me-2 text-bg-dark" %>

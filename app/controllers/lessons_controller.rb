@@ -12,7 +12,7 @@ class LessonsController < ApplicationController
 
   def create
     @course = Course.find_by(id: params[:id])
-    if Lesson.where(course_id: @course.id).count != nil
+    if Lesson.where(course_id: @course.id).count == nil
       @number = 1 
     else
       @number = Lesson.where(course_id: @course.id).count + 1
