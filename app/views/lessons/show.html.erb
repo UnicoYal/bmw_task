@@ -35,7 +35,7 @@
     <span class="theory__number">4</span>
     <span class="theory__description"><span class="lesson__quiz__title">Тест по уроку</span></span>
     <div class="lesson__buttons">
-      <%= button_to "Перейти", "/tests/show/#{@lesson.id}", method: :get,class: "btn btn-outline-light me-2 text-bg-dark" %>
+      <%= button_to "Перейти", "/tests/show/#{@lesson.id}", method: :get, data: {turbo: false}, class: "btn btn-outline-light me-2 text-bg-dark" %>
     </div>
     <%= form_with url: "/tests/destroy/#{@lesson.id}", method: :post do |form| %>
         <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить</button>
@@ -47,7 +47,7 @@
     <span class="theory__number">4</span>
     <span class="theory__description"><span class="lesson__quiz__title">Тест по уроку</span></span>
     <div class="lesson__buttons">
-      <%= button_to "Перейти", "/tests/show/#{@lesson.id}", method: :get,data: {turbo: false}, class: "btn btn-outline-light me-2 text-bg-dark" %>
+      <%= link_to "Перейти", "/tests/show/#{@lesson.id}", method: :get, data: {turbo: false}, class: "btn btn-outline-light me-2 text-bg-dark" %>
     </div>
   </div>
 </div>
