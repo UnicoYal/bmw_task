@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'lessons/show/:id', to: "lessons#show", as: "show_les"
   post 'lessons/new/:id', to: "lessons#new", as: "new_les"
   post 'lessons/create/:id', to: "lessons#create", as: "create_les"
+  post 'lessons/destroy/:id', to: "lessons#destroy"
 
   get 'tests/index'
   get 'tests/show/:id', to: "tests#show", as: "show_test"
