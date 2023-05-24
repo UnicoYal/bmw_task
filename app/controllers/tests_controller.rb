@@ -12,6 +12,11 @@ class TestsController < ApplicationController
     render json: $questions
   end
 
+  def results_post
+    request_body = JSON.parse(request.body.read)
+    p request_body
+  end
+
   def ans
     @correct = []
     @incorrect = []

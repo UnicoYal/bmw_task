@@ -1,10 +1,11 @@
 <script>
   let data;
   let tempAnswers = {}
+
     window.addEventListener('DOMContentLoaded', async function() {
-        const response = await fetch('/tests/questions_api/10')
+        const id = parseInt(document.getElementById("id").textContent)
+        const response = await fetch(`/tests/questions_api/${id}`)
         data = await response.json()
-        console.log(data)
         const pagination = document.querySelector(".questination")
         for (let i = 0; i < data.length; i++) {
             pagination.innerHTML += `<button type="submit" class="question__pick" onclick="nextQuestion(event.target.textContent)">${i+1}</button>`
@@ -15,7 +16,6 @@
       let questionNumber = parseInt(q)
       let question = data[questionNumber-1]
       answerPicked()
-      console.log(tempAnswers)
       newQuestion(question, questionNumber)
   }
   const newQuestion = (question, questionNumber) => {
@@ -28,17 +28,22 @@
                             </div>
                             <div class="question__title" id="${question.num}">${question.question}</div>
                             <form class="question__form">
+                            <div>
                               <input type="radio" id="option1" name="answer" value="option1">
                               <label for="option1">${answers[0]}</label>
+                            </div>
 
+                            <div>
                               <input type="radio" id="option2" name="answer" value="option2">
                               <label for="option2">${answers[1]}</label>
-
+                              </div>
+                            <div>
                               <input type="radio" id="option3" name="answer" value="option3">
                               <label for="option3">${answers[2]}</label>
+                            </div>
                             </form>`
       if (tempAnswers[questionNumber]) {
-          let option = document.getElementById(tempAnswers[questionNumber]).checked = true
+          let option = document.getElementById(tempAnswers[questionNumber][0]).checked = true
       }
   }
   const answerPicked = () => {
@@ -53,8 +58,24 @@
       }
       if (selectedOption) {
           const questionNumber = document.querySelector(".question__title").id
-         tempAnswers[questionNumber] = selectedOption
+          const label = document.querySelector(`label[for="${selectedOption}"]`)
+         tempAnswers[questionNumber] = [selectedOption, label.textContent]
       }
+  }
+  const finishQuiz = () => {
+      answerPicked()
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      for (let key of Object.keys(tempAnswers)) {
+          tempAnswers[key] = tempAnswers[key][1]
+      }
+      fetch('/tests/results', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': csrfToken
+          },
+          body: JSON.stringify(tempAnswers)
+      })
   }
 </script>
 <div class="course__theme"></div>
@@ -63,7 +84,8 @@
 
 </div>
 <div class="end__test">
-  <button class="">Завершить</button>
+  <button class="" onclick="finishQuiz()">Завершить</button>
 </div>
 <div class="questination"></div>
+<span style="display: none" id="id"><%= $id %></span>
 
