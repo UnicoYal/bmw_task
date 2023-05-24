@@ -39,4 +39,9 @@ class TestsController < ApplicationController
     $count = params[:count].to_i
   end
 
+  def destroy
+    Test.find_by(lesson_id: params[:id]).destroy
+    redirect_to show_les_path
+  end
+
 end
