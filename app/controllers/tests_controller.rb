@@ -3,8 +3,13 @@ class TestsController < ApplicationController
   end
 
   def show
+    $id = params[:id]
+  end
+
+  def questions_api
     $test = Test.find_by(lesson_id: params[:id])
     $questions = Question.where(test_id: $test.id).order("num asc")
+    render json: $questions
   end
 
   def ans

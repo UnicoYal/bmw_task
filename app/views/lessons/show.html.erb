@@ -21,7 +21,7 @@
   </div>
   <%if @lesson.pictures.attached?%>
     <div class = "move_center"><% @lesson.pictures.each do |picture|%>
-        <%= image_tag(picture, style:"width:671px; height:543px") %></div>
+        <%= image_tag(picture, style:"width:80%;height:auto;") %></div>
       <%end%>
   <%end%>
   <div class = "descs"><h1>Самое важное</h1></div>
@@ -47,7 +47,7 @@
     <span class="theory__number">4</span>
     <span class="theory__description"><span class="lesson__quiz__title">Тест по уроку</span></span>
     <div class="lesson__buttons">
-      <%= button_to "Перейти", "/tests/show/#{@lesson.id}", method: :get,class: "btn btn-outline-light me-2 text-bg-dark" %>
+      <%= button_to "Перейти", "/tests/show/#{@lesson.id}", method: :get,data: {turbo: false}, class: "btn btn-outline-light me-2 text-bg-dark" %>
     </div>
   </div>
 </div>

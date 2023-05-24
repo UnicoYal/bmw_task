@@ -192,4 +192,8 @@
 
 .modal {
   overflow: scroll;
-  } 
+  }
+.question__form {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,12 +1,69 @@
-<%= form_with url: '/tests/ans', method: :get do |form| %>
-<% $questions.each do |que| %>
-  <div class = "move_left"><h3><%= que.question %><h3></div>
-  <p><%= form.label "ans#{que.num}".to_s, "Выберите ответ" %></p><div id = <%"ans_res#{que.num}"%>></div>
-          <p><%= form.radio_button "ans#{que.num}".to_s, que.answer %> <%= que.answer%>
-          <p><%= form.radio_button "ans#{que.num}".to_s, que.wrong_first %> <%= que.wrong_first%></p>
-          <p><%= form.radio_button "ans#{que.num}".to_s, que.wrong_second %> <%= que.wrong_second%></p>
-<% end %>
- <div class='col-auto'>
-    <%= submit_tag("Сохранить", class: "btn btn-info", id: 'btn') %>
-</div> 
-<%end%>
+<script>
+  let data;
+  let tempAnswers = {}
+    window.addEventListener('DOMContentLoaded', async function() {
+        const response = await fetch('/tests/questions_api/10')
+        data = await response.json()
+        console.log(data)
+        const pagination = document.querySelector(".questination")
+        for (let i = 0; i < data.length; i++) {
+            pagination.innerHTML += `<button type="submit" class="question__pick" onclick="nextQuestion(event.target.textContent)">${i+1}</button>`
+        }
+        nextQuestion(1)
+    });
+  const nextQuestion = (q) => {
+      let questionNumber = parseInt(q)
+      let question = data[questionNumber-1]
+      answerPicked()
+      console.log(tempAnswers)
+      newQuestion(question, questionNumber)
+  }
+  const newQuestion = (question, questionNumber) => {
+      const container = document.querySelector(".question__container")
+      let answers = [question.answer, question.wrong_first, question.wrong_second]
+      let picked;
+      container.innerHTML = `<div class="test__info">
+                              <span class="question__number"></span>
+                              <span class="test__time"></span>
+                            </div>
+                            <div class="question__title" id="${question.num}">${question.question}</div>
+                            <form class="question__form">
+                              <input type="radio" id="option1" name="answer" value="option1">
+                              <label for="option1">${answers[0]}</label>
+
+                              <input type="radio" id="option2" name="answer" value="option2">
+                              <label for="option2">${answers[1]}</label>
+
+                              <input type="radio" id="option3" name="answer" value="option3">
+                              <label for="option3">${answers[2]}</label>
+                            </form>`
+      if (tempAnswers[questionNumber]) {
+          let option = document.getElementById(tempAnswers[questionNumber]).checked = true
+      }
+  }
+  const answerPicked = () => {
+      const options = document.getElementsByName("answer");
+      let selectedOption;
+      let i;
+      for (i = 0; i < options.length; i++) {
+          if (options[i].checked) {
+              selectedOption = options[i].value;
+              break;
+          }
+      }
+      if (selectedOption) {
+          const questionNumber = document.querySelector(".question__title").id
+         tempAnswers[questionNumber] = selectedOption
+      }
+  }
+</script>
+<div class="course__theme"></div>
+<div class="test__title">Тест</div>
+<div class="question__container">
+
+</div>
+<div class="end__test">
+  <button class="">Завершить</button>
+</div>
+<div class="questination"></div>
+
