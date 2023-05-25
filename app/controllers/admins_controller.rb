@@ -6,7 +6,6 @@ class AdminsController < ApplicationController
   def create_user
    @user = User.new(user_params)
    return unless @user.save
-   Rating.create(user_id: @user.id, all_courses: 0, finished_courses: 0)
    redirect_to all_path
  end
 
@@ -28,8 +27,6 @@ class AdminsController < ApplicationController
 
   def adding_to_course
     CoursesUser.create({user_id: params[:user_id], course_id: params[:id]}) 
-    count_of_courses = Rating.find_by(user_id: params[:user_id]).all_courses
-    Rating.find_by(user_id: params[:user_id]).update(all_courses: count_of_courses+1)
     redirect_to show_cu_path
   end
 
@@ -41,8 +38,6 @@ class AdminsController < ApplicationController
 
   def removing_from_course
     CoursesUser.find_by({user_id: params[:user_id], course_id: params[:id]}).destroy 
-    count_of_courses = Rating.find_by(user_id: params[:user_id]).all_courses
-    Rating.find_by(user_id: params[:user_id]).update(all_courses: count_of_courses-1)
     redirect_to show_cu_path
   end
 

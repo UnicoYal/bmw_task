@@ -12,16 +12,12 @@ class CoursesController < ApplicationController
   def sign
     @course = Course.find_by(id: params[:id])
     CoursesUser.create(user_id: current_user.id, course_id: @course.id)
-    count_of_courses = Rating.find_by(user_id: current_user.id).all_courses
-    Rating.find_by(user_id: current_user.id).update(all_courses: count_of_courses+1)
     redirect_to show_cu_path
   end
 
   def unsubscribe
     @course = Course.find_by(id: params[:id])
     CoursesUser.destroy_by(user_id: current_user.id, course_id: @course.id)
-    count_of_courses = Rating.find_by(user_id: current_user.id).all_courses
-    Rating.find_by(user_id: current_user.id).update(all_courses: count_of_courses-1)
     redirect_to show_cu_path
   end
 

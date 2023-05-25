@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_212848) do
   create_table "courses_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "course_id"
+    t.integer "finished_count", default: 0
     t.boolean "status", default: false
     t.index ["course_id"], name: "index_courses_users_on_course_id"
     t.index ["user_id"], name: "index_courses_users_on_user_id"
@@ -68,12 +69,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_212848) do
     t.string "answer"
     t.string "wrong_first"
     t.string "wrong_second"
-  end
-
-  create_table "ratings", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "all_courses"
-    t.integer "finished_courses"
   end
 
   create_table "tests", force: :cascade do |t|

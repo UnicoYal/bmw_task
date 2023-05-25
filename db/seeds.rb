@@ -12,9 +12,6 @@ User.create!({first_name: "Админ", second_name: "Админов", patronymi
 Course.all.each do |cour|
   cour.destroy
 end
-Rating.all.each do |rat|
-  rat.destroy
-end
 CoursesUser.all.each do |cu|
   cu.destroy
 end
@@ -24,7 +21,6 @@ end
 Test.all.each do |tes|
   tes.destroy
 end
-Rating.create({user_id: User.first.id, all_courses: 0, finished_courses: 0})
 Course.create({                       	                                              	 
   title: "Психология безопасности: почему человек рискует",   
   description: "Разберетесь в причинах и последствиях несчастных случаев. Узнаете, из каким этапов состоит эволюция безопасности."})

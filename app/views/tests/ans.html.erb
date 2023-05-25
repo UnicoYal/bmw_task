@@ -1,9 +1,0 @@
-<% $questions.each do |el| %>
-<div class = "move_left"><h3><%="#{el.num} Вопрос: #{el.question}"%></h3></div>
-  <% if @correct.include?(el.num) %>
-    <div class = "move_left"><h4><%="#{@your_ans[el.num-1]} ✅"%></h4></div>
-  <% else %>
-    <div class = "move_left"><h4><%="#{@your_ans[el.num-1]} ❌"%></h4></div>
-  <%end%>
-<%end%>
-<%=button_to "Назад в урок", "/lessons/show/#{Lesson.find_by(id: $test.lesson_id).id}", method: :get, class: "btn btn-outline-light me-2 text-bg-dark", type: "button"%>

@@ -4,12 +4,7 @@ class User < ApplicationRecord
   attr_accessor :old_password
 
   has_secure_password validations: false
-  has_many :courses_user
-  has_one :rating, dependent: :destroy
-  # has_many :service_records
-  # has_many :consultations
-  # has_one :work
-  # has_many :reviews
+  has_many :courses_user, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9.]+@[a-z]{2,6}\.[a-z]{2,3}\z/,
   message: 'Не верный формат' }

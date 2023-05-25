@@ -1,9 +1,10 @@
 <script>
   let data;
+  let id;
   let tempAnswers = {}
 
     window.addEventListener('DOMContentLoaded', async function() {
-        const id = parseInt(document.getElementById("id").textContent)
+        id = parseInt(document.getElementById("id").textContent)
         const response = await fetch(`/tests/questions_api/${id}`)
         data = await response.json()
         const pagination = document.querySelector(".questination")
@@ -100,7 +101,7 @@
           body: JSON.stringify(tempAnswers)
       }).then((response) => {
           if (response.status === 200) {
-              window.location.href = '/tests/results';
+              window.location.href = `/tests/results/?lesson_id=${id}`;
           }
       })
   }

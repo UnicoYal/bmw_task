@@ -16,13 +16,13 @@
       <th scope="col">Количество завершенных курсов</th>
     </tr>
     </thead>
-    <% @ratings.each do |rate| %>
-      <% user = User.find_by(id: rate.user_id)%>
+    <% @ratings.each do |user_id, count| %>
+      <% user = User.find_by(id: user_id)%>
       <tbody>
       <tr>
         <td><%= "#{user.second_name} #{user.first_name} #{user.patronymic}" %></td>
-        <td><%= rate.all_courses %></td>
-        <td><%= rate.finished_courses %></td>
+        <td><%= count %></td>
+        <td><%= CoursesUser.where(user_id: user.id, status: true).count %></td>
       </tr>
       </tbody>
     <%end%>

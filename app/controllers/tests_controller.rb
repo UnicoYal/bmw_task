@@ -15,8 +15,24 @@ class TestsController < ApplicationController
 
   def results_post
     if request.get?
-      p $questions_hash
+      @flag = false
+      $percent = ($count_right * 100)/($count_right+$count_wrong) #Процент НИКИТЕ
+      if $percent > 60            #Проверка по проценту
+        @flag = true   # Флаг никите
+        @lesson_id = Test.find_by(lesson_id: params[:lesson_id]).lesson_id
+        @course = Lesson.find_by(id: @lesson_id).course_id 
+        pas = CoursesUser.find_by(user_id: current_user.id, course_id: @course) 
+        if pas.finished_count < Lesson.where(course_id: @course).count
+          counter = pas.finished_count
+          pas.update(finished_count: counter+1)
+        end
+        if pas.finished_count == Lesson.where(course_id: @course).count 
+          pas.update(status: true) 
+        end
+      end                               
     elsif request.post?
+      $count_wrong = 0
+      $count_right = 0 
       request_body = JSON.parse(request.body.read)
       $questions_hash = []
       $questions.each_with_index do |question, index|
@@ -24,33 +40,16 @@ class TestsController < ApplicationController
         curr_hash[:question] = question
         if !(request_body.key?((index + 1).to_s))
           curr_hash[:correct] = false
+          $count_wrong += 1
         elsif question.answer == request_body[question.num.to_s]
           curr_hash[:correct] = true
+          $count_right += 1
         else
           curr_hash[:correct] = false
+          $count_wrong += 1
         end
         $questions_hash.push(curr_hash)
       end
-    end
-    # render 'tests/results_post'
-    # p request_body
-    # p $questions_hash  Тут твой массив хэшей
-    # p 'CHECK'
-    # p $questions_hash.first[:question].question Пример доступа к полю модели
-
-  end
-
-  def ans
-    @correct = []
-    @incorrect = []
-    @your_ans = []
-    $questions.each do |el|
-      if params["ans#{el.num}".to_s] == el.answer
-        @correct.push(el.num)
-      else
-        @incorrect.push(el.num)
-      end
-      @your_ans.push(params["ans#{el.num}".to_s])
     end
   end
 

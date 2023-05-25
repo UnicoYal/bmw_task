@@ -1,22 +1,22 @@
 <%if @param == '0'%>
 <div class = "move_left"><h1>Текущие курсы</h1></div>
     <div class="course__grid">
-<% @my_courses.where(status: false).each do |us_course|%>
-<% course = Course.find_by(id: us_course.course_id)%>
+<% @rdy_courses.each do |us_course|%>
     <div class="course__item">
       <div class="course__categories">
-        <span class="category"><%=course.title[0..55]%></span>
+        <span class="category"><%=us_course[:course].title[0..55]%></span>
         <span class="course__free">Важный</span>
       </div>
       <div class="course__info">
-        <div class="course__title"><%= course.title%></div>
+        <div class="course__title"><%= us_course[:course].title%></div>
         <div class="course__description">
-          <%= course.description%>
+          <%= us_course[:course].description%>
+          <%= us_course[:percent] %>
         </div>
       </div>
       <div class="course__avatar">
-        <% if course.avatar.attached? %>
-          <%= image_tag(course.avatar, style:"width:150px; height:150px")%>
+        <% if us_course[:course].avatar.attached? %>
+          <%= image_tag(us_course[:course].avatar, style:"width:150px; height:150px")%>
         <%end%>
       </div>
       <div class="course__additional">
@@ -28,7 +28,7 @@
           <i class="material-icons">date_range</i>
           <span class="additional">2 часа</span>
         </div>
-    <%=button_to "Перейти в курс", "/courses/show/#{course.id}", method: :get, class: "btn btn-outline-light me-2 text-bg-dark"%>
+    <%=button_to "Перейти в курс", "/courses/show/#{us_course[:course].id}", method: :get, class: "btn btn-outline-light me-2 text-bg-dark"%>
           </div>
     </div>
 <%end%>
@@ -36,22 +36,21 @@
 <div class = "move_left"><h1> Пройденные курсы </h1></div>
 <% k = 1%>
     <div class="course__grid">
-<% @my_courses.where(status: true).each do |us_course|%>
-<% course = Course.find_by(id: us_course.course_id)%>
+<% @not_rdy_courses.each do |us_course|%>
     <div class="course__item">
       <div class="course__categories">
-        <span class="category"><%=course.title[0..55]%></span>
+        <span class="category"><%=us_course.title[0..55]%></span>
         <span class="course__free">Важный</span>
       </div>
       <div class="course__info">
-        <div class="course__title"><%= course.title%></div>
+        <div class="course__title"><%= us_course.title%></div>
         <div class="course__description">
-          <%= course.description%>
+          <%= us_course.description%>
         </div>
       </div>
       <div class="course__avatar">
-        <% if course.avatar.attached? %>
-          <%= image_tag(course.avatar, style:"width:150px; height:150px")%>
+        <% if us_course.avatar.attached? %>
+          <%= image_tag(us_course.avatar, style:"width:150px; height:150px")%>
         <%end%>
       </div>
       <div class="course__additional">
@@ -63,7 +62,7 @@
           <i class="material-icons">date_range</i>
           <span class="additional">2 часа</span>
         </div>
-    <%=button_to "Перейти в курс", "/courses/show/#{course.id}", method: :get, class: "btn btn-outline-light me-2 text-bg-dark"%>
+    <%=button_to "Перейти в курс", "/courses/show/#{us_course.id}", method: :get, class: "btn btn-outline-light me-2 text-bg-dark"%>
           </div>
     </div>
 <%end%>

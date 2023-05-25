@@ -18,6 +18,7 @@ class LessonsController < ApplicationController
       @number = Lesson.where(course_id: @course.id).count + 1
     end
     Lesson.create({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], course_id: @course.id, number: @number, pictures: params[:pictures], file: params[:file]})
+    CoursesUser.where(course_id: @course.id).each {|el| el.update(status: false)}
     redirect_to show_cu_path
   end
 
@@ -25,6 +26,13 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find_by(id: params[:id])
     @course = Course.find_by(id: @lesson.course_id)
     @lesson.destroy
+    @les_count = Lesson.where(course_id: @course.id).count
+    CoursesUser.where(course_id: @course.id).each do |el|
+      counter = el.finished_count
+      if el.finished_count == @les_count
+        el.update(status: true)
+      end
+    end
     redirect_to "/courses/show/#{@course.id}"
   end
 
