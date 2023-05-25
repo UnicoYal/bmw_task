@@ -1,9 +1,11 @@
 class RatingsController < ApplicationController
   def index
-    @ratings = {}
+   hash = {}
     CoursesUser.all.each do |el|
-      @ratings[el.user_id] ||= 0
-      @ratings[el.user_id] += 1
+      hash[el.user_id] ||= 0
+      hash[el.user_id] += 1
     end
+    sorted_array = hash.sort_by { |key, value| -value }
+    @ratings = Hash[sorted_array]
   end
 end
