@@ -14,7 +14,22 @@ class TestsController < ApplicationController
 
   def results_post
     request_body = JSON.parse(request.body.read)
-    p request_body
+    $questions_hash = []
+    request_body.each do |key, val| 
+      curr_hash = {}
+      curr_hash[:question] = $questions[key.to_i - 1]
+      if $questions[key.to_i-1].answer == val
+        curr_hash[:correct] = true
+      else
+        curr_hash[:correct] = false
+      end 
+      $questions_hash.push(curr_hash)
+    end
+    # p request_body
+    # p $questions_hash  Тут твой массив хэшей
+    # p 'CHECK'
+    # p $questions_hash.first[:question].question Пример доступа к полю модели
+
   end
 
   def ans
