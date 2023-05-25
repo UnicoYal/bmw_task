@@ -84,6 +84,9 @@
 
 </div>
 <div class="end__test">
+  <%= form_tag tests_results_url do %>
+    <%= submit_tag "TEST" %>
+  <% end %>
   <button class="" onclick="finishQuiz()">Завершить</button>
 </div>
 <div class="questination"></div>
