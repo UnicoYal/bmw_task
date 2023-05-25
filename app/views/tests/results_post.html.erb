@@ -1,1 +1,21 @@
-<%= $questions_hash[0][:correct] %>>
+
+<div class="answers__wrapper">
+  <div class="test__title">Результаты теста</div>
+  <% $questions_hash.each do |question| %>
+    <div class="answers">
+      <div class="question__title"><%= question[:question].num %>. <%= question[:question].question %></div>
+      <% if question[:correct] %>
+        <div class="correct__answer"><%= question[:question].answer %></div>
+        <div class="just__answer"><%= question[:question].wrong_first %></div>
+        <div class="just__answer"><%= question[:question].wrong_second %></div>
+      <% else %>
+        <div class="correct__answer"><%= question[:question].answer %></div>
+        <div class="wrong__answer"><%= question[:question].wrong_first %></div>
+        <div class="wrong__answer"><%= question[:question].wrong_second %></div>
+      <% end %>
+
+    </div>
+
+
+  <% end %>
+</div>

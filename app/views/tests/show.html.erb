@@ -8,7 +8,7 @@
         data = await response.json()
         const pagination = document.querySelector(".questination")
         for (let i = 0; i < data.length; i++) {
-            pagination.innerHTML += `<button type="submit" class="question__pick" onclick="nextQuestion(event.target.textContent)">${i+1}</button>`
+            pagination.innerHTML += `<button type="submit" class="never__picked" onclick="nextQuestion(event.target.textContent)">${i+1}</button>`
         }
         nextQuestion(1)
     });
@@ -21,26 +21,33 @@
   const newQuestion = (question, questionNumber) => {
       const container = document.querySelector(".question__container")
       let answers = [question.answer, question.wrong_first, question.wrong_second]
-      let picked;
+      document.querySelector('.current')?.classList.remove('current')
+      document.querySelectorAll('.never__picked').forEach(button => {
+          if (button.textContent == questionNumber)
+              button.classList.add("current")
+      })
       container.innerHTML = `<div class="test__info">
-                              <span class="question__number"></span>
-                              <span class="test__time"></span>
+                              <span class="question__number"><i class="material-icons">edit</i>${question.num} вопрос из ${data.length}</span>
+<!--                              <span class="test__time"><i class="material-icons">access_time</i>00:32</span>-->
                             </div>
                             <div class="question__title" id="${question.num}">${question.question}</div>
                             <form class="question__form">
-                            <div>
+                        <div class="options">
+                         <div class="option">
                               <input type="radio" id="option1" name="answer" value="option1">
                               <label for="option1">${answers[0]}</label>
                             </div>
 
-                            <div>
+                            <div class="option">
                               <input type="radio" id="option2" name="answer" value="option2">
                               <label for="option2">${answers[1]}</label>
                               </div>
-                            <div>
+                            <div class="option">
                               <input type="radio" id="option3" name="answer" value="option3">
                               <label for="option3">${answers[2]}</label>
                             </div>
+</div>
+
                             </form>`
       if (tempAnswers[questionNumber]) {
           let option = document.getElementById(tempAnswers[questionNumber][0]).checked = true
@@ -60,11 +67,14 @@
           const questionNumber = document.querySelector(".question__title").id
           const label = document.querySelector(`label[for="${selectedOption}"]`)
          tempAnswers[questionNumber] = [selectedOption, label.textContent]
+          document.querySelectorAll('.never__picked').forEach(button => {
+              if (button.textContent == questionNumber)
+                  button.classList.add("picked")
+          })
       }
   }
   const finishQuiz = () => {
       answerPicked()
-      console.log(tempAnswers)
       const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
       for (let key of Object.keys(tempAnswers)) {
           tempAnswers[key] = tempAnswers[key][1]
@@ -80,29 +90,20 @@
           if (response.status === 200) {
               window.location.href = '/tests/results';
           }
-          // window.location.href = "/tests/results"
       })
   }
 </script>
-<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content" id="m-body">
+<div class="quiz__wrapper">
+  <div class="course__theme"><%= $course %></div>
+  <div class="test__title">Тест</div>
+  <div class="question__container">
 
-    </div>
   </div>
+  <div class="end__test">
+    <button class="end__quiz__button" onclick="finishQuiz()">Завершить</button>
+  </div>
+  <div class="questination"></div>
+  <span style="display: none" id="id"><%= $id %></span>
 </div>
-<div class="course__theme"></div>
-<div class="test__title">Тест</div>
-<div class="question__container">
 
-</div>
-<div class="end__test">
-  <%= form_tag tests_results_url do %>
-    <%= submit_tag "TEST" %>
-  <% end %>
-  <%= button_to "TEST2", tests_results_path, method: :post %>
-  <button class="" onclick="finishQuiz()">Завершить</button>
-</div>
-<div class="questination"></div>
-<span style="display: none" id="id"><%= $id %></span>
 

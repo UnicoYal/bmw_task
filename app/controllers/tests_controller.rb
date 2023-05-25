@@ -4,6 +4,7 @@ class TestsController < ApplicationController
 
   def show
     $id = params[:id]
+    $course = Lesson.find_by_id($id).title
   end
 
   def questions_api
@@ -20,14 +21,14 @@ class TestsController < ApplicationController
     p request.body.read
     request_body = JSON.parse(request.body.read)
     $questions_hash = []
-    request_body.each do |key, val| 
+    request_body.each do |key, val|
       curr_hash = {}
       curr_hash[:question] = $questions[key.to_i - 1]
       if $questions[key.to_i-1].answer == val
         curr_hash[:correct] = true
       else
         curr_hash[:correct] = false
-      end 
+      end
       $questions_hash.push(curr_hash)
       end
     end
@@ -43,7 +44,7 @@ class TestsController < ApplicationController
     @correct = []
     @incorrect = []
     @your_ans = []
-    $questions.each do |el| 
+    $questions.each do |el|
       if params["ans#{el.num}".to_s] == el.answer
         @correct.push(el.num)
       else
@@ -55,7 +56,7 @@ class TestsController < ApplicationController
 
   def create
     @test = Test.create(lesson_id: params[:id])
-    $count.times do |i| 
+    $count.times do |i|
       Question.create(test_id: @test.id, num: i+1, question: params["question#{i}".to_s], answer: params["answer#{i}".to_s], wrong_first: params["wrong_first#{i}".to_s],
       wrong_second: params["wrong_second#{i}".to_s])
     end
