@@ -101,3 +101,6 @@ input[type="radio"] {
 .correct__answer, .wrong__answer, .just__answer {
     padding: 10px 30px;
 }
+.answers {
+    padding: 30px 10px;
+}

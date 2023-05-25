@@ -17,19 +17,19 @@ class TestsController < ApplicationController
     if request.get?
       p $questions_hash
     elsif request.post?
-
-    p request.body.read
-    request_body = JSON.parse(request.body.read)
-    $questions_hash = []
-    request_body.each do |key, val|
-      curr_hash = {}
-      curr_hash[:question] = $questions[key.to_i - 1]
-      if $questions[key.to_i-1].answer == val
-        curr_hash[:correct] = true
-      else
-        curr_hash[:correct] = false
-      end
-      $questions_hash.push(curr_hash)
+      request_body = JSON.parse(request.body.read)
+      $questions_hash = []
+      $questions.each_with_index do |question, index|
+        curr_hash = {}
+        curr_hash[:question] = question
+        if !(request_body.key?((index + 1).to_s))
+          curr_hash[:correct] = false
+        elsif question.answer == request_body[question.num.to_s]
+          curr_hash[:correct] = true
+        else
+          curr_hash[:correct] = false
+        end
+        $questions_hash.push(curr_hash)
       end
     end
     # render 'tests/results_post'
