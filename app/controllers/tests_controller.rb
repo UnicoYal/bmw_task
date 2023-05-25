@@ -13,6 +13,11 @@ class TestsController < ApplicationController
   end
 
   def results_post
+    if request.get?
+      p $questions_hash
+    elsif request.post?
+
+    p request.body.read
     request_body = JSON.parse(request.body.read)
     $questions_hash = []
     request_body.each do |key, val| 
@@ -24,7 +29,9 @@ class TestsController < ApplicationController
         curr_hash[:correct] = false
       end 
       $questions_hash.push(curr_hash)
+      end
     end
+    # render 'tests/results_post'
     # p request_body
     # p $questions_hash  Тут твой массив хэшей
     # p 'CHECK'

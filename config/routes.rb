@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get 'tests/ans', to: "tests#ans", as: "tests_ans"
   get 'tests/questions_api/:id', to: "tests#questions_api", as: "q_api"
   post 'tests/results', to: "tests#results_post"
+  get 'tests/results', to: "tests#results_post"
   post 'tests/show_question', to: "tests#show_question", as: "show_question"
   post 'tests/testing', to: "tests#testing"
   post 'tests/select_num/:id', to: "tests#select_num", as: "selnum_test"

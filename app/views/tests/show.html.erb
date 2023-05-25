@@ -64,6 +64,7 @@
   }
   const finishQuiz = () => {
       answerPicked()
+      console.log(tempAnswers)
       const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
       for (let key of Object.keys(tempAnswers)) {
           tempAnswers[key] = tempAnswers[key][1]
@@ -75,9 +76,21 @@
               'X-CSRF-Token': csrfToken
           },
           body: JSON.stringify(tempAnswers)
+      }).then((response) => {
+          if (response.status === 200) {
+              window.location.href = '/tests/results';
+          }
+          // window.location.href = "/tests/results"
       })
   }
 </script>
+<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="m-body">
+
+    </div>
+  </div>
+</div>
 <div class="course__theme"></div>
 <div class="test__title">Тест</div>
 <div class="question__container">
@@ -87,6 +100,7 @@
   <%= form_tag tests_results_url do %>
     <%= submit_tag "TEST" %>
   <% end %>
+  <%= button_to "TEST2", tests_results_path, method: :post %>
   <button class="" onclick="finishQuiz()">Завершить</button>
 </div>
 <div class="questination"></div>
