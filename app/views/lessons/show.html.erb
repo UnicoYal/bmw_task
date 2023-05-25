@@ -37,6 +37,9 @@
     <div class="lesson__buttons">
       <%= button_to "Перейти", "/tests/show/#{@lesson.id}", method: :get, data: {turbo: false}, class: "btn btn-outline-light me-2 text-bg-dark" %>
     </div>
+    <%= form_with url: "/tests/edit/#{@lesson.id}", method: :post do |form| %>
+        <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Изменить</button>
+    <% end %> 
     <%= form_with url: "/tests/destroy/#{@lesson.id}", method: :post do |form| %>
         <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить</button>
     <% end %> 
