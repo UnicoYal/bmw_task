@@ -52,7 +52,7 @@ input[type="radio"] {
     gap: 10px;
     justify-content: center;
 }
-.end__quiz__button {
+.end__quiz__button, .next__question__button {
     background-color: #8ca4c5;
     color: #fff;
     cursor: pointer;
@@ -60,6 +60,9 @@ input[type="radio"] {
     border: 1px solid transparent;
     border-radius: 5px;
     padding: 10px 20px;
+}
+.next__question__button {
+    margin-right: 20px;
 }
 .option {
     display: flex;
@@ -103,4 +106,7 @@ input[type="radio"] {
 }
 .answers {
     padding: 30px 10px;
+}
+.none {
+    display: none;
 }

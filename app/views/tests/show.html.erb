@@ -17,6 +17,7 @@
       let question = data[questionNumber-1]
       answerPicked()
       newQuestion(question, questionNumber)
+
   }
   const newQuestion = (question, questionNumber) => {
       const container = document.querySelector(".question__container")
@@ -26,6 +27,10 @@
           if (button.textContent == questionNumber)
               button.classList.add("current")
       })
+      if (questionNumber === data.length)
+          document.querySelector('.next__question__button').classList.add('none')
+      else
+          document.querySelector('.next__question__button').classList.remove('none')
       container.innerHTML = `<div class="test__info">
                               <span class="question__number"><i class="material-icons">edit</i>${question.num} вопрос из ${data.length}</span>
 <!--                              <span class="test__time"><i class="material-icons">access_time</i>00:32</span>-->
@@ -73,6 +78,13 @@
           })
       }
   }
+  const nextQuestionByButton = (event) => {
+      const current = document.querySelector('.current')
+      const current_question = parseInt(current.textContent)
+      if (current_question === data.length)
+          return
+      nextQuestion(current_question+1)
+  }
   const finishQuiz = () => {
       answerPicked()
       const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -100,6 +112,7 @@
 
   </div>
   <div class="end__test">
+    <button class="next__question__button" onclick="nextQuestionByButton(event)">Следующий</button>
     <button class="end__quiz__button" onclick="finishQuiz()">Завершить</button>
   </div>
   <div class="questination"></div>
