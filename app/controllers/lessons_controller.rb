@@ -28,6 +28,24 @@ class LessonsController < ApplicationController
     redirect_to "/courses/show/#{@course.id}"
   end
 
+  def edit
+    @lesson = Lesson.find_by(id: params[:id])
+  end
+
+  def update
+    @lesson = Lesson.find_by(id: params[:id])
+    if params[:pictures] == [""] && params[:file] == nil
+      @lesson.update({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main]})
+    elsif params[:pictures] != [""] && params[:file] == nil
+      @lesson.update({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], pictures: params[:pictures]})
+    elsif params[:pictures] == [""] && params[:file] != nil
+      @lesson.update({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], file: params[:file]})
+    else
+      @lesson.update({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], pictures: params[:pictures], file: params[:file]})
+    end
+    redirect_to show_les_path
+  end
+
   private
 
   def lessons_params

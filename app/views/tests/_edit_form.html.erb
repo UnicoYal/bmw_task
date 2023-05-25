@@ -1,0 +1,18 @@
+<%= form_with url: "/tests/update/#{tests.id}", method: :post do |form| %>
+<% i = 0%>
+  <% @testings.each do |el| %>
+  <p><%= form.label "question#{i}".to_s, "Измените #{i+1} вопрос" %></p>
+  <p><%= form.text_field "question#{i}".to_s, value: el.question, class: 'form-control', id: 'question'%>
+  <p><%= form.label "answer#{i}".to_s, "Измените правильный ответ" %></p>
+  <p><%= form.text_field "answer#{i}".to_s, value: el.answer,class: 'form-control', id: 'question'%>
+  <p><%= form.label "wrong_first#{i}".to_s, "Измените неправильный ответ" %></p>
+  <p><%= form.text_field "wrong_first#{i}".to_s, value: el.wrong_first,class: 'form-control', id: 'question'%>
+  <p><%= form.label "wrong_second#{i}".to_s, "Измените неправильный ответ" %></p>
+  <p><%= form.text_field "wrong_second#{i}".to_s, value: el.wrong_second, class: 'form-control', id: 'question'%>
+  <% i += 1 %>
+  <%end%>
+  <p><%= form.submit("Изменить", class: "btn btn-outline-light me-2 text-bg-dark") %></p>
+<% end %>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+</div>

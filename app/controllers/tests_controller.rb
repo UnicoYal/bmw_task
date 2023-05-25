@@ -77,4 +77,23 @@ class TestsController < ApplicationController
     redirect_to show_les_path
   end
 
+  def edit
+    @test = Test.find_by(lesson_id: params[:id])
+    @testings = Question.where(test_id: @test.id).order("num asc")
+  end
+
+  def update
+    @questions = Question.where(test_id: params[:id]).order("num asc")
+    @count = @questions.count
+    i = 0
+    @questions.each do |el|
+      el.update(question: params["question#{i}".to_s], answer: params["answer#{i}".to_s], wrong_first: params["wrong_first#{i}".to_s],
+        wrong_second: params["wrong_second#{i}".to_s])
+        i += 1
+    end
+    @test = Test.find_by(id: params[:id])
+    @lesson = Lesson.find_by(id: @test.lesson_id)
+    redirect_to "/lessons/show/#{@lesson.id}"
+  end
+
 end

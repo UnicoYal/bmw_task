@@ -5,6 +5,15 @@
       </div>
   </div>
 </div>
+<% if current_user.role == 2 %>
+ <%= form_with url: "/lessons/edit/#{@lesson.id}", method: :post do |form| %>
+    <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Изменить урок</button>
+<% end %> 
+ <%= form_with url: "/lessons/destroy/#{@lesson.id}", method: :post do |form| %>
+    <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить урок</button>
+<% end %> 
+<%end%>
+ <%= button_to "Назад", "/courses/show/#{@lesson.course_id}",method: :get, class: "btn btn-outline-light me-2 text-bg-dark" %>
 
 <div class="lessons__container">
   <div class = "descs"><h1>Урок <%= @lesson.number%>: <%= @lesson.title%></h1></div>
@@ -37,6 +46,9 @@
     <div class="lesson__buttons">
       <%= button_to "Перейти", "/tests/show/#{@lesson.id}", method: :get, data: {turbo: false}, class: "btn btn-outline-light me-2 text-bg-dark" %>
     </div>
+    <%= form_with url: "/tests/edit/#{@lesson.id}", method: :post do |form| %>
+        <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Изменить</button>
+    <% end %> 
     <%= form_with url: "/tests/destroy/#{@lesson.id}", method: :post do |form| %>
         <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить</button>
     <% end %> 
@@ -61,4 +73,3 @@
   </div>
 </div>
 <%end%>
- <%= button_to "Назад", "/courses/show/#{@lesson.course_id}",method: :get, class: "btn btn-outline-light me-2 text-bg-dark" %>

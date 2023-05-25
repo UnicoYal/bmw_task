@@ -70,10 +70,5 @@
   </div>
 </div>
 <%end%>
-<% if current_user.role == 2 %>
- <%= form_with url: "/lessons/destroy/#{les.id}", method: :post do |form| %>
-    <button type="submit" class="btn btn-outline-light me-2 text-bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить урок</button>
-<% end %> 
-<%end%>
 <%end%>
 <%end%>

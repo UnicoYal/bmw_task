@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   post 'lessons/new/:id', to: "lessons#new", as: "new_les"
   post 'lessons/create/:id', to: "lessons#create", as: "create_les"
   post 'lessons/destroy/:id', to: "lessons#destroy"
+  post 'lessons/edit/:id', to: "lessons#edit", as: "edit_les"
+  post 'lessons/update/:id', to: "lessons#update", as: "update_les"
 
   get 'tests/index'
   get 'tests/show/:id', to: "tests#show", as: "show_test"
@@ -44,6 +46,8 @@ Rails.application.routes.draw do
   post 'tests/create/:id', to: "tests#create", as: "create_test"
   post 'tests/create_questions/:id', to: "tests#create_questions", as: "cr_quests"
   post 'tests/destroy/:id', to: "tests#destroy"
+  post 'tests/edit/:id', to: "tests#edit", as: "edit_test"
+  post 'tests/update/:id', to: "tests#update", as: "update_test"
 
   post 'admins/update_role/:id', to: "admins#update_role"
   post 'admins/changing_role/:id', to: "admins#changing_role"
