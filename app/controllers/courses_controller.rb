@@ -8,8 +8,10 @@ class CoursesController < ApplicationController
     @course = Course.find_by(id: params[:id])
     @lessons = Lesson.where(course_id: params[:id])
     @hash = {}
-    UsersLesson.where(user_id: current_user.id).each do |el|
-      @hash[el.lesson_id] = el.status
+    if current_user != nil
+      UsersLesson.where(user_id: current_user.id).each do |el|
+        @hash[el.lesson_id] = el.status
+      end
     end
   end
 

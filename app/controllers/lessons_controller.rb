@@ -28,6 +28,7 @@ class LessonsController < ApplicationController
   def destroy
     @lesson = Lesson.find_by(id: params[:id])
     @course = Course.find_by(id: @lesson.course_id)
+    UsersLesson.where(lesson_id: @lesson.id).each {|el| el.destroy}
     @lesson.destroy
     @les_count = Lesson.where(course_id: @course.id).count
     CoursesUser.where(course_id: @course.id).each do |el|
