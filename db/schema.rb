@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_05_26_083039) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -45,8 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_083039) do
   end
 
   create_table "courses_users", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "course_id"
+    t.bigint "user_id"
+    t.bigint "course_id"
     t.integer "finished_count", default: 0
     t.boolean "status", default: false
     t.index ["course_id"], name: "index_courses_users_on_course_id"
