@@ -17,8 +17,11 @@ class LessonsController < ApplicationController
     else
       @number = Lesson.where(course_id: @course.id).count + 1
     end
-    Lesson.create({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], course_id: @course.id, number: @number, pictures: params[:pictures], file: params[:file]})
-    CoursesUser.where(course_id: @course.id).each {|el| el.update(status: false)}
+    les = Lesson.create({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], course_id: @course.id, number: @number, pictures: params[:pictures], file: params[:file]})
+    CoursesUser.where(course_id: @course.id).each do |el|
+      el.update(status: false)
+      UsersLesson.create(user_id: el.user_id, lesson_id: les.id)
+    end
     redirect_to show_cu_path
   end
 

@@ -20,6 +20,7 @@ class TestsController < ApplicationController
       if $percent > 60            #Проверка по проценту
         @flag = true   # Флаг никите
         @lesson_id = Test.find_by(lesson_id: params[:lesson_id]).lesson_id
+        UsersLesson.find_by(user_id: current_user.id, lesson_id: @lesson_id).update(status: true)
         @course = Lesson.find_by(id: @lesson_id).course_id 
         pas = CoursesUser.find_by(user_id: current_user.id, course_id: @course) 
         if pas.finished_count < Lesson.where(course_id: @course).count

@@ -7,17 +7,27 @@ class CoursesController < ApplicationController
   def show 
     @course = Course.find_by(id: params[:id])
     @lessons = Lesson.where(course_id: params[:id])
+    @hash = {}
+    UsersLesson.where(user_id: current_user.id).each do |el|
+      @hash[el.lesson_id] = el.status
+    end
   end
 
   def sign
     @course = Course.find_by(id: params[:id])
     CoursesUser.create(user_id: current_user.id, course_id: @course.id)
+    Lesson.where(course_id: @course.id).each do |el|
+      UsersLesson.create(user_id: current_user.id, lesson_id: el.id)
+    end
     redirect_to show_cu_path
   end
 
   def unsubscribe
     @course = Course.find_by(id: params[:id])
     CoursesUser.destroy_by(user_id: current_user.id, course_id: @course.id)
+    Lesson.where(course_id: @course.id).each do |el|
+      UsersLesson.find_by(user_id: current_user.id, lesson_id: el.id).destroy
+    end
     redirect_to show_cu_path
   end
 

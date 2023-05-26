@@ -3,4 +3,5 @@ class Lesson < ApplicationRecord
   has_one :test, dependent: :destroy
   has_many_attached :pictures, dependent: :destroy
   has_one_attached :file, dependent: :destroy
+  has_many :users_lessons, dependent: :destroy
 end

@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   has_secure_password validations: false
   has_many :courses_user, dependent: :destroy
+  has_many :users_lessons, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9.]+@[a-z]{2,6}\.[a-z]{2,3}\z/,
   message: 'Не верный формат' }
