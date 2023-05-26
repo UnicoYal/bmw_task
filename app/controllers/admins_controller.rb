@@ -41,7 +41,7 @@ class AdminsController < ApplicationController
 
   def removing_from_course
     CoursesUser.find_by({user_id: params[:user_id], course_id: params[:id]}).destroy 
-    Lesson.where(course_id: @course.id).each do |el|
+    Lesson.where(course_id: params[:id]).each do |el|
       UsersLesson.find_by(user_id: params[:user_id], lesson_id: el.id).destroy
     end
     redirect_to show_cu_path
