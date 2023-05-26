@@ -60,19 +60,21 @@
 
 
 <div class = "descs"><h1>Уроки</h1></div>
+</div>
+<div class = "move_center">
 <% @lessons.each do |les| %>
   <div class = "lessons">
   <% if @hash[les.id] %>
     <%= image_tag("781823.png", style: "width: 24px; height: auto", class: "galochka") %>
   <% end %>
   Урок <%= les.number %>: <%= les.title%></div>
-  <div class = "move_center">
 <% if current_user != nil %>
 <%if CoursesUser.find_by(user_id: current_user.id, course_id: @course.id) != nil%>  
   <div class="container">
     <%=button_to "Перейти в урок", "/lessons/show/#{les.id}", method: :get, class: "btn btn-outline-light me-2 text-bg-dark" %></button>
   </div>
+
+<%end%>
+<%end%>
+<%end%>
 </div>
-<%end%>
-<%end%>
-<%end%>
