@@ -7,8 +7,8 @@
   <p><%= form.text_field :part_sc, value: lesson.part_sc,class: 'form-control', id: 'question'%>
   <p><%= form.label :main, "Измените основную мысль" %></p>
   <p><%= form.text_field :main, value: lesson.main,class: 'form-control', id: 'mark'%>
-  <p><%= form.label :pictures, "Измените фотографии" %></p>
-  <p><%= form.file_field :pictures, multiple: true %>
+  <p><%= form.label :picture, "Измените фотографию" %></p>
+  <p><%= form.file_field :picture %>
     <p><%= form.label :file, "Измените видео" %></p>
   <p><%= form.file_field :file %>
   <p><%= form.submit("Изменить", class: "btn btn-outline-light me-2 text-bg-dark") %></p>
