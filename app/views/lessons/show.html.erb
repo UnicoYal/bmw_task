@@ -31,10 +31,9 @@
     <span class="theory__number">2</span>
     <span class="theory__description"><%= @lesson.part_sc %></span>
   </div>
-  <%if @lesson.pictures.attached?%>
-    <div class = "move_center"><% @lesson.pictures.each do |picture|%>
-        <%= image_tag(picture, style:"width:80%;height:auto;") %></div>
-      <%end%>
+  <%if @lesson.picture.attached?%>
+    <div class = "move_center">
+        <%= image_tag(@lesson.picture, style:"width:80%;height:auto;") %></div>
   <%end%>
   <div class = "descs"><h1>Самое важное</h1></div>
   <div class = "theory__areas">

@@ -37,7 +37,7 @@ Lesson.create({course_id: Course.first.id,
 })
 @lesson = Lesson.first
 @lesson.file.attach(io: File.open('app/assets/images/vid.mp4'), filename: 'vid.mp4')
-@lesson.pictures.attach(io: File.open('app/assets/images/piramida.jpg'), filename: 'piramida.jpg')
+@lesson.picture.attach(io: File.open('app/assets/images/piramida.jpg'), filename: 'piramida.jpg')
 
 Test.create(lesson_id: Lesson.first.id)
 Question.create({              	 

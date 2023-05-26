@@ -17,7 +17,7 @@ class LessonsController < ApplicationController
     else
       @number = Lesson.where(course_id: @course.id).count + 1
     end
-    les = Lesson.create({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], course_id: @course.id, number: @number, pictures: params[:pictures], file: params[:file]})
+    les = Lesson.create({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], course_id: @course.id, number: @number, picture: params[:picture], file: params[:file]})
     CoursesUser.where(course_id: @course.id).each do |el|
       el.update(status: false)
       UsersLesson.create(user_id: el.user_id, lesson_id: les.id)
@@ -49,11 +49,11 @@ class LessonsController < ApplicationController
     if params[:pictures] == [""] && params[:file] == nil
       @lesson.update({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main]})
     elsif params[:pictures] != [""] && params[:file] == nil
-      @lesson.update({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], pictures: params[:pictures]})
+      @lesson.update({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], picture: params[:picture]})
     elsif params[:pictures] == [""] && params[:file] != nil
       @lesson.update({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], file: params[:file]})
     else
-      @lesson.update({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], pictures: params[:pictures], file: params[:file]})
+      @lesson.update({title: params[:title], part_fr: params[:part_fr], part_sc: params[:part_sc], main: params[:main], picture: params[:picture], file: params[:file]})
     end
     redirect_to show_les_path
   end
@@ -61,6 +61,6 @@ class LessonsController < ApplicationController
   private
 
   def lessons_params
-    params.require(:lesson).permit(:file, pictures: [])
+    params.require(:lesson).permit(:file, :picture)
   end
 end
