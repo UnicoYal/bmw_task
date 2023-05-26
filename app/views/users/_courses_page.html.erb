@@ -11,10 +11,12 @@
         <div class="course__title"><%= us_course[:course].title%></div>
         <div class="course__description">
           <%= us_course[:course].description%>
-          <%= us_course[:percent] %>
         </div>
       </div>
       <div class="course__avatar">
+        <div class="course__percentage">
+          <%= us_course[:percent] %>%
+        </div>
         <% if us_course[:course].avatar.attached? %>
           <%= image_tag(us_course[:course].avatar, style:"width:150px; height:150px")%>
         <%end%>
@@ -49,6 +51,7 @@
         </div>
       </div>
       <div class="course__avatar">
+
         <% if us_course.avatar.attached? %>
           <%= image_tag(us_course.avatar, style:"width:150px; height:150px")%>
         <%end%>
@@ -67,4 +70,3 @@
     </div>
 <%end%>
 <%end%>
-

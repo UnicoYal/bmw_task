@@ -1,6 +1,18 @@
 
 <div class="answers__wrapper">
   <div class="test__title">Результаты теста</div>
+
+  <div class="result_message">
+    <div class="messages">
+      <div class="percentage"><%= $count_right %> из <%= $count_right + $count_wrong%> верно</div>
+      <% if @flag %>
+        <div class="grats">Поздравляю, Вы прошли урок</div>
+      <% else %>
+        <div class="unlucky">К сожалению, урок не пройден</div>
+      <% end %>
+    </div>
+    <%= button_to "Вернуться к курсам", home_path, method: :get, class: "btn btn-outline-light me-2 text-bg-dark nikita" %>
+  </div>
   <% $questions_hash.each do |question| %>
     <div class="answers">
       <div class="question__title"><%= question[:question].num %>. <%= question[:question].question %></div>

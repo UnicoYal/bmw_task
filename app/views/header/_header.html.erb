@@ -15,7 +15,7 @@
                       <%= "#{current_user.first_name} #{current_user.second_name}"%>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end text-bg-dark" aria-labelledby="navbarDropdown">
-                      <li><%=link_to "Личный кабинет",  profile_path, class: "nav-link px-2 text-white dropdown-item btn", type: "button"%></li>
+                      <li><%=link_to "Личный кабинет",  profile_path, class: "nav-link px-2 text-white dropdown-item btn custom-color", type: "button"%></li>
                       <li><hr class="dropdown-divider"></li>
                       <li><%= button_to "Выйти", session_path, method: :delete, class: "nav-link px-2 text-white dropdown-item btn btn-lg", id: 'ex_btn'%></li>
                       </ul>

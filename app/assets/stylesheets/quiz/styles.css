@@ -110,3 +110,19 @@ input[type="radio"] {
 .none {
     display: none;
 }
+.percentage {
+    font-size: 1.5em;
+    padding: 10px 0;
+    font-weight: 600;
+}
+.grats, .unlucky {
+    font-size: 1.5em;
+    padding: 10px 0;
+}
+.result_message {
+    display: flex;
+    justify-content: space-between;
+}
+.nikita {
+    margin: 20px;
+}

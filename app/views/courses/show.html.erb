@@ -61,7 +61,11 @@
 
 <div class = "descs"><h1>Уроки</h1></div>
 <% @lessons.each do |les| %>
-  <div class = "lessons"><%= @hash[les.id]%>Урок <%= les.number %>: <%= les.title%></div>
+  <div class = "lessons">
+  <% if @hash[les.id] %>
+    <%= image_tag("781823.png", style: "width: 24px; height: auto", class: "galochka") %>
+  <% end %>
+  Урок <%= les.number %>: <%= les.title%></div>
   <div class = "move_center">
 <% if current_user != nil %>
 <%if CoursesUser.find_by(user_id: current_user.id, course_id: @course.id) != nil%>  
